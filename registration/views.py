@@ -27,7 +27,7 @@ from django.contrib.auth.models import User
 @csrf_exempt
 def register_user(request):
     if request.method == "POST":
-        form = UserRegisterForm(request.POST)
+        form = UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -35,10 +35,15 @@ def register_user(request):
             age = form.cleaned_data.get('age')
             gender = form.cleaned_data.get('gender')
             isexpert = form.cleaned_data.get('isexpert')
+            pic = form.cleaned_data.get('pic')
             user = User.objects.get(username=username)
             user_data = UserData.objects.create(user=user, age=age, gender=gender, firstname=firstname,
-                                                isexpert=isexpert)
+                                                isexpert=isexpert, pic=pic)
             user_data.save()
+            if isexpert:
+                user.is_active = False
+                user.save()
+
             return redirect('home')
     else:
         form = UserRegisterForm()

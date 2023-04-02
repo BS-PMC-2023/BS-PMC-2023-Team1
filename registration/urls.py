@@ -1,12 +1,10 @@
-from django.urls import path, include
-from django.conf import settings
+from django.urls import path
+
 from . import views
 
-from django.conf.urls.static import static
-
 urlpatterns = [
-         path('login', views.Login, name='login'),
-         path('register', views.register_user, name='register'),
-         path('', views.register_user, name='register2'),
+    path('login', views.Login, name='login'),
+    path('register', views.register_user, name='register'),
+    path('', views.register_user, name='register2'),
 
 ]

@@ -8,7 +8,8 @@ class UserRegisterForm(UserCreationForm):
     age = forms.IntegerField()
     gender = forms.CharField()
     isexpert = forms.BooleanField()
+    pic = forms.ImageField()
 
     class Meta:
         model = User
-        fields = ['username', 'firstname', 'email', 'age', 'gender', 'password1', 'password2', 'isexpert']
+        fields = ['username', 'firstname', 'email', 'age', 'gender', 'password1', 'password2', 'isexpert','pic']

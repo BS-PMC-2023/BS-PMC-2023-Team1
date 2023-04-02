@@ -8,3 +8,4 @@ class UserData(models.Model):
     age = models.PositiveIntegerField()
     gender = models.CharField(max_length=20)
     isexpert = models.BooleanField(default=False)
+    pic = models.ImageField(upload_to='media/',null=True)
