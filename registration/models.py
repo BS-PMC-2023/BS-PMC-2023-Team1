@@ -7,5 +7,7 @@ class UserData(models.Model):
     firstname = models.CharField(max_length=20, default='SOME STRING')
     age = models.PositiveIntegerField()
     gender = models.CharField(max_length=20)
-    isexpert = models.BooleanField(default=False)
-    pic = models.ImageField(upload_to='media/',null=True)
+    isexpert = models.BooleanField(default=True)
+    pic = models.ImageField(upload_to='media/', null=True)
+
+  # if your using 'title' as the attribute to identify your objects
