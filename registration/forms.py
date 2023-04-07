@@ -5,11 +5,13 @@ from django.contrib.auth.forms import UserCreationForm
 
 class UserRegisterForm(UserCreationForm):
     firstname = forms.CharField()
-    age = forms.IntegerField()
-    gender = forms.CharField()
-    isexpert = forms.BooleanField()
+    lastname = forms.CharField()
+    isexpert = forms.BooleanField(required=False)
     pic = forms.ImageField()
+    isAdmin = forms.BooleanField(required=False)
+    Certificate = forms.ImageField(required=False)
 
     class Meta:
         model = User
-        fields = ['username', 'firstname', 'email', 'age', 'gender', 'password1', 'password2', 'isexpert','pic']
+        fields = ['username', 'firstname', 'email', 'lastname', 'password1', 'password2', 'isexpert', 'pic',
+                  'isAdmin', 'Certificate']

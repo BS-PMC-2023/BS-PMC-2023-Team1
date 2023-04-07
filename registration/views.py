@@ -32,13 +32,14 @@ def register_user(request):
             form.save()
             username = form.cleaned_data.get('username')
             firstname = form.cleaned_data.get('firstname')
-            age = form.cleaned_data.get('age')
-            gender = form.cleaned_data.get('gender')
+            lastname = form.cleaned_data.get('lastname')
             isexpert = form.cleaned_data.get('isexpert')
             pic = form.cleaned_data.get('pic')
+            Certificate = form.cleaned_data.get('Certificate')
+            isAdmin=form.cleaned_data.get('isAdmin')
             user = User.objects.get(username=username)
-            user_data = UserData.objects.create(user=user, age=age, gender=gender, firstname=firstname,
-                                                isexpert=isexpert, pic=pic)
+            user_data = UserData.objects.create(user=user, isAdmin=isAdmin, firstname=firstname,lastname=lastname,
+                                                isexpert=isexpert, pic=pic, Certificate=Certificate)
             user_data.save()
             if isexpert:
                 user.is_active = False
