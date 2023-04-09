@@ -10,4 +10,4 @@ class UserData(models.Model):
     isAdmin = models.BooleanField(default=False)
     pic = models.ImageField(upload_to='media/', null=True)
     Certificate = models.ImageField(upload_to='media/Certificates/', null=True)
-
+    Pending = models.BooleanField(default=False)
