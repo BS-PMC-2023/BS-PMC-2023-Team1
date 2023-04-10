@@ -1,0 +1,38 @@
+header {
+	background: linear-gradient(to right, #c7dfcd, #abd699, #73c9b7, #abd699, #c7dfcd);
+	padding: 10px;
+	border-radius: 10px;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('Comfortaa.ttf');
+  }
+
+  body {
+    font-family: 'Comfortaa', sa;
+  }
+
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+nav li {
+	margin: 0 10px;
+}
+
+.nav-item {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	text-decoration: none;
+    border-radius: 10px;
+	transition: background-color 0.5s ease;
+}
+
+.nav-item:hover {
+	background-color: #555;
+}
