@@ -1,10 +1,18 @@
 from django.shortcuts import render
+from .models import Review
 
 
 # Create your views here.
 def viewForm(request):
-    return render(request, 'reviews/reviews.html', None)
+    if request.method == 'POST':
+        data = request.POST # Dictionary of the input data
+        Review.objects.create(
+            name = data['name'],
+            email = data['email'],
+            title = data['title'],
+            content = data['description']
+        )
 
-
-def viewSubmitted(request):
-    return render(request, 'reviews/submitted.html', None)
+        return render(request, 'reviews/submitted.html', None)
+    else:
+        return render(request, 'reviews/reviews.html', None)
