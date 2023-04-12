@@ -28,7 +28,7 @@ def findArticles(query: str = None, language: str = "en"):
     # Find Articles
     gn = g(lang=language, period='1d')
     gn.search(query)
-    df = pd.DataFrame(gn.page_at(1))
+    df = pd.DataFrame(gn.page_at(1)).iloc[:8]
 
     # Merge content
     df[['content', 'img']] = df['link'].apply(lambda l: getContent(l)).to_list()
