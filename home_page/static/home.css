@@ -1,38 +1,37 @@
-header {
-	background: linear-gradient(to right, #c7dfcd, #abd699, #73c9b7, #abd699, #c7dfcd);
-	padding: 10px;
-	border-radius: 10px;
-}
 
 @font-face {
-    font-family: 'Comfortaa';
-    src: url('Comfortaa.ttf');
-  }
-
-  body {
-    font-family: 'Comfortaa', sa;
-  }
-
-nav ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
+    font-family: "PlayfairDisplay";
+    src: url('../../FakeNews/static/PlayfairDisplay.ttf');
 }
 
-nav li {
-	margin: 0 10px;
+/* Donalt Trump quote */
+.quote {
+    font-family: 'David';
+    position: absolute;
+    top: 300px;
+    left: 50px;
+    color: #736e6e;
 }
 
-.nav-item {
-	display: inline-block;
-	padding: 10px 20px;
-	color: #fff;
-	text-decoration: none;
-    border-radius: 10px;
-	transition: background-color 0.5s ease;
+/* for left quote only */
+.quote span-left {
+    position: absolute;
+    top:-35px;
+    left:-25px;
+    font-size: 60px;
 }
 
-.nav-item:hover {
-	background-color: #555;
+/* for right quote only */
+.quote span-right {
+    position: absolute;
+    top:48px;
+    left:415px;
+    font-size: 60px;
+}
+
+/* for the line spacing of the sentence */
+.quote span {
+    position: absolute;
+    top: 40px;
+    right: 0px;
 }
