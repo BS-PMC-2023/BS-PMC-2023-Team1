@@ -5,7 +5,7 @@ from FakeNews import settings
 from . import views
 
 urlpatterns = [
-    path('create', views.viewForm, name='login'),
-    path('', views.viewForm, name='login'),
+    path('create', views.viewForm),
+    path('', views.viewForm),
 
 ]
