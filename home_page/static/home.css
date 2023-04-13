@@ -1,12 +1,7 @@
 
-@font-face {
-    font-family: "PlayfairDisplay";
-    src: url('../../FakeNews/static/PlayfairDisplay.ttf');
-}
-
-/* Donalt Trump quote */
+/* Donalt Trump's quote */
 .quote {
-    font-family: 'David';
+    font-family: 'Nixie One', cursive;
     position: absolute;
     top: 300px;
     left: 50px;
@@ -15,23 +10,66 @@
 
 /* for left quote only */
 .quote span-left {
+    font-family: 'Secular One', sans-serif;
+    color: #AFA9A9FF;
+    font-size: 60px;
     position: absolute;
     top:-35px;
     left:-25px;
-    font-size: 60px;
 }
 
 /* for right quote only */
 .quote span-right {
-    position: absolute;
-    top:48px;
-    left:415px;
+    font-family: 'Secular One', sans-serif;
+    color: #AFA9A9FF;
     font-size: 60px;
+    position: absolute;
+    top:30px;
+    left:290px;
+    transform: scaleY(-1);
 }
-
 /* for the line spacing of the sentence */
 .quote span {
     position: absolute;
     top: 40px;
-    right: 0px;
+    right: 48px;
 }
+
+/* Headline fade effect */
+.fade-in {
+	animation: fadeInAnimation ease 2s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+/* Sub-headline fade effect */
+fade-in2 {
+    animation: fadeInAnimation ease 8s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+fade-in3 {
+    animation: fadeInAnimation ease 10s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+        transform: translateX(-80px);
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* cards for articles presentation */
+.card-title {
+    font-family: 'Comfortaa', cursive;
+}
+
+.card-text {
+    font-family: 'Nixie One', cursive;
+}
+

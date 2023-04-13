@@ -1,13 +1,5 @@
-
-@font-face {
-	font-family: 'Comfortaa';
-    src: url('../../FakeNews/static/Comfortaa.ttf');
-  }
-
 body {
-    font-family: 'Comfortaa';
     display: grid;
-    font-size: 16px;
     font-weight: 700;
     place-items: center;
     background-color: #FFFFFFFF;
@@ -28,6 +20,8 @@ nav ul {
 }
 
 nav li {
+    font-family: 'Comfortaa', cursive;
+    font-size: 14px;
 	margin: 0 10px;
 }
 
@@ -61,7 +55,7 @@ nav li {
     margin: 0;
 }
 
-/*Fake News home button do not take hover effect*/
+/* Fake News home button do not take hover effect */
 .no-hover-effect:hover::before {
     transform-origin: inherit;
     transform: scaleX(0);
@@ -73,6 +67,7 @@ a {
     text-decoration: none;
 }
 
+/* line hover effect */
 a::before {
     content: '';
     position: absolute;
@@ -87,6 +82,7 @@ a::before {
     transition: transform .3s ease-in-out;
 }
 
+/* line hover effect */
 a:hover::before {
     transform-origin: inherit;
     transform: scaleX(1);
