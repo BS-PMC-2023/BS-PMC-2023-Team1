@@ -44,20 +44,20 @@
 
 /* Sub-headline fade effect */
 fade-in2 {
-    animation: fadeInAnimation ease 8s;
+    animation: fadeInAnimation ease 5s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 }
 
 fade-in3 {
-    animation: fadeInAnimation ease 10s;
+    animation: fadeInAnimation ease 5s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 }
 @keyframes fadeInAnimation {
 	0% {
 		opacity: 0;
-        transform: translateX(-80px);
+        transform: translateX(-40px);
 	}
 	100% {
 		opacity: 1;
@@ -66,7 +66,8 @@ fade-in3 {
 
 /* cards for articles presentation */
 .card-title {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
 }
 
 .card-text {
