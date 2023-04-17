@@ -37,6 +37,9 @@
 
 /* Headline fade effect */
 .fade-in {
+    margin-top: 50px;
+    font-family: 'Poiret One';
+    font-weight: bold;
 	animation: fadeInAnimation ease 2s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
@@ -44,6 +47,9 @@
 
 /* Sub-headline fade effect */
 fade-in2 {
+    margin-top: 20px;
+    color: #afa9a9;
+    font-family: 'Montserrat', sans-serif;
     animation: fadeInAnimation ease 5s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
