@@ -10,8 +10,8 @@ class UserRegisterForm(UserCreationForm):
     pic = forms.ImageField()
     isAdmin = forms.BooleanField(required=False)
     Certificate = forms.ImageField(required=False)
-
+    Pending = forms.BooleanField(required=False)
     class Meta:
         model = User
         fields = ['username', 'firstname', 'email', 'lastname', 'password1', 'password2', 'isexpert', 'pic',
-                  'isAdmin', 'Certificate']
+                  'isAdmin', 'Certificate','Pending']

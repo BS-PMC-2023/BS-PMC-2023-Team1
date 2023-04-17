@@ -36,10 +36,14 @@ def register_user(request):
             isexpert = form.cleaned_data.get('isexpert')
             pic = form.cleaned_data.get('pic')
             Certificate = form.cleaned_data.get('Certificate')
-            isAdmin=form.cleaned_data.get('isAdmin')
+            isAdmin = form.cleaned_data.get('isAdmin')
             user = User.objects.get(username=username)
-            user_data = UserData.objects.create(user=user, isAdmin=isAdmin, firstname=firstname,lastname=lastname,
-                                                isexpert=isexpert, pic=pic, Certificate=Certificate)
+            if isexpert:
+                Pending = True
+            else:
+                Pending = False
+            user_data = UserData.objects.create(user=user, isAdmin=isAdmin, firstname=firstname, lastname=lastname,
+                                                isexpert=isexpert, pic=pic, Certificate=Certificate, Pending=Pending)
             user_data.save()
             if isexpert:
                 user.is_active = False

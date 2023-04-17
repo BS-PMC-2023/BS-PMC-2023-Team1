@@ -22,6 +22,8 @@ import home_page.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('reviews/', include('reviews.urls')),
+    path('articles/', include('articles.urls')),
     path('', include('registration.urls')),
     path('', include('home_page.urls')),
 ]
