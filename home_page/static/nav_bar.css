@@ -7,6 +7,7 @@
   }
 
 .home-button {
+    position: relative;
     margin-top: 8px;
     display: flex;
     padding-top: 14px;
@@ -14,7 +15,9 @@
     font-family: 'Aboreto', cursive;
     font-size: 18px;
     font-weight: bold;
+    text-decoration: none;
     color: #000000;
+    /*color: #afa9a9;*/
 }
 
 /* Fake News home button do not take hover effect */
@@ -53,14 +56,14 @@
     position: relative;
 }
 
-a {
+.nav-item-hover {
     color: #afa9a9;
     position: relative;
     text-decoration: none;
 }
 
 /* line hover effect */
-a::before {
+.nav-item-hover::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -74,7 +77,7 @@ a::before {
     transition: transform .3s ease-in-out;
 }
 
-a:hover::before {
+.nav-item-hover:hover::before {
     transform-origin: inherit;
     transform: scaleX(0.5);
 }

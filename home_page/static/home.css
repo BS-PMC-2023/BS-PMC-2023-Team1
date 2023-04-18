@@ -69,14 +69,3 @@ fade-in3 {
 		opacity: 1;
 	}
 }
-
-/* cards for articles presentation */
-.card-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-}
-
-.card-text {
-    font-family: 'Nixie One', cursive;
-}
-

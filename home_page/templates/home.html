@@ -1,9 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="../static/nav_bar.css">
         <link rel="stylesheet" type="text/css" href="../static/home.css">
+        <link rel="stylesheet" type="text/css" href="../static/card.css">
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">     <!-- Comfortaa font -->
         <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">             <!-- Poiret One font -->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">     <!-- Montserrat -->
@@ -18,11 +21,11 @@
         <nav class="nav-bar">
             <a class="home-button no-hover-effect" href="">FAKE NEWS</a>
             <ul class="nav-list">
-                <li class="nav-item"><a href="#">All</a></li>
-                <li class="nav-item"><a href="#">About</a></li>
-                <li class="nav-item"><a href="#">Services</a></li>
-                <li class="nav-item"><a href="#">Blog</a></li>
-                <li class="nav-item"><a href="#">Contact</a></li>
+                <li class="nav-item"><a class="nav-item-hover" href="#">All</a></li>
+                <li class="nav-item"><a class="nav-item-hover" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-item-hover" href="#">Services</a></li>
+                <li class="nav-item"><a class="nav-item-hover" href="#">Blog</a></li>
+                <li class="nav-item"><a class="nav-item-hover" href="#">Contact</a></li>
 
                 <!-- Dropdown -->
                 <li class="nav-item">
@@ -96,64 +99,39 @@
         </div>
         <div class="container text-center" style="margin-top: 30px">
             <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for index, row in data %}
                 <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
+                    <div class="card h-100 cards">
+                        <img src={{ row.img }} class="card-img-top" alt="Image">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text"> This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 class="card-title">{{ row.title }}</h5>
+                            <p class="card-text">{{ row.content|slice:":200" }}...</p>
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-right: 15px;">
-                            <button type="button" class="btn btn-outline-primary btn-sm">Read more...</button>
+                        <div class="card-footer text-body-secondary">
+                            <a href={{ row.link }} class="card-link">read more</a>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
 
-            <!-- Placeholder -->
-            <div class="card" aria-hidden="true">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title placeholder-glow">
-                        <span class="placeholder col-6"></span>
-                    </h5>
-                        <p class="card-text placeholder-glow">
-                        <span class="placeholder col-7"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-6"></span>
-                        <span class="placeholder col-8"></span>
-                    </p>
-                    <a class="btn btn-primary disabled placeholder col-6"></a>
-                </div>
-            </div>
+                            <!-- Placeholder -->
+{#            <div class="card" aria-hidden="true">#}
+{#                <img src="..." class="card-img-top" alt="...">#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title placeholder-glow">#}
+{#                        <span class="placeholder col-6"></span>#}
+{#                    </h5>#}
+{#                        <p class="card-text placeholder-glow">#}
+{#                        <span class="placeholder col-7"></span>#}
+{#                        <span class="placeholder col-4"></span>#}
+{#                        <span class="placeholder col-4"></span>#}
+{#                        <span class="placeholder col-6"></span>#}
+{#                        <span class="placeholder col-8"></span>#}
+{#                    </p>#}
+{#                    <a class="btn btn-primary disabled placeholder col-6"></a>#}
+{#                </div>#}
+{#            </div>#}
 
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </body>

@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
+from OurArticlesModel import articlesModel
 
 
 def home(request):
-    return render(request, 'home.html')
+    df = articlesModel.findArticles("Sports")
+    return render(request, 'home.html', {'data': df.iterrows()})
