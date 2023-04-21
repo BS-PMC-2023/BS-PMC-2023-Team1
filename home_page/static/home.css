@@ -1,5 +1,12 @@
+/* Home page CSS */
 
-/* Donalt Trump's quote */
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nixie+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+/* Donald Trump's quote */
 .quote {
     font-family: 'Nixie One', cursive;
     position: absolute;
@@ -35,11 +42,13 @@
     right: 48px;
 }
 
-/* Headline fade effect */
+/* Headline */
+/* Primary-headline fade effect */
 .fade-in {
-    margin-top: 50px;
-    font-family: 'Poiret One';
+    margin-top: 110px;
+    font-family: 'Poiret One', cursive;
     font-weight: bold;
+    letter-spacing: 5px;
 	animation: fadeInAnimation ease 2s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
@@ -56,6 +65,7 @@ fade-in2 {
 }
 
 fade-in3 {
+    font-family: 'Aboreto', cursive;
     animation: fadeInAnimation ease 5s;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;

@@ -1,23 +1,48 @@
+/* Navbar CSS */
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
 /* Navbar container that split into 2 - one for the home button and second for the rest of the bar */
 .nav-bar {
-    background-color: transparent;
-    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 9999;
     display: grid;
     grid-template-columns: 150px 1fr;
   }
 
+/* Slide up the navbar when toggle up */
+.sticky.slide-up {
+    height: 65px;
+    padding-top: 5px;
+    transition: height 0.3s ease-in-out, padding-top 0.3s ease-in-out;
+    box-shadow: none;
+}
+
+/* Slide down the navbar when toggle down */
+.sticky.slide-down {
+    height: 85px;
+    padding-top: 15px;
+    transition: height 0.3s ease-in-out, padding-top 0.3s ease-in-out;
+    box-shadow: 0 8px 20px -15px rgba(0, 0, 0, 0.5);
+}
+
+/* Fake News home button */
 .home-button {
     position: relative;
-    margin-top: 8px;
+    margin-top: 5px;
     display: flex;
-    padding-top: 14px;
+    padding-top: 19px;
     justify-self: center;
     font-family: 'Aboreto', cursive;
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
     color: #000000;
-    /*color: #afa9a9;*/
 }
 
 /* Fake News home button do not take hover effect */
@@ -28,7 +53,7 @@
 
 /* Container of the bar items and search box */
 .nav-list {
-    margin-top: 25px;
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 100px 100px 100px 100px 100px 100px 300px;
     gap: 15px;
@@ -46,6 +71,7 @@
 }
 
 .nav-list a {
+    margin-top: 5px;
     display: block;
     text-decoration: none;
     color:#5c585c;
@@ -70,11 +96,11 @@
     height: 1.5px;
     border-radius: 4px;
     background-color: #575756;
-    bottom: -14px;
+    bottom: -12px;
     left: 0;
     transform-origin: initial;
     transform: scaleX(0);
-    transition: transform .3s ease-in-out;
+    transition: transform .4s ease-in-out;
 }
 
 .nav-item-hover:hover::before {
@@ -83,14 +109,134 @@
 }
 
 
+/* Dropdown box */
+.select-box {
+    position: relative;
+    margin-top: -13px;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    color: #60666d;
+}
+
+.select-box-current {
+    position: relative;
+    padding: 2px 8px 2px 2px;
+    /* box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1); */
+    cursor: pointer;
+    outline: none;
+}
+
+.select-box-current:focus + .select-box-list {
+    opacity: 1;
+    -webkit-animation-name: none;
+            animation-name: none;
+}
+
+.select-box-current:focus + .select-box-list .select-box__option {
+    cursor: pointer;
+}
+
+.select-box-current:focus .select-box_icon {
+    -webkit-transform: translateY(-50%) rotate(180deg);
+            transform: translateY(-50%) rotate(180deg);
+}
+
+.select-box_icon {
+    position: absolute;
+    top: 65%;
+    right: 15px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    width: 13px;
+    opacity: 0.3;
+    transition: 0.3s ease;
+}
+
+.select-box-value {
+    display: flex;
+}
+
+.select-box-input {
+    display: none;
+}
+
+.select-box-input:checked + .select-box-input-text {
+    display: block;
+}
+
+.select-box-input-text {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 15px 10px 2px;
+    background-color: #ffffff;
+}
+
+.select-box-list {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    -webkit-animation-name: HideList;
+            animation-name: HideList;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+    -webkit-animation-delay: 0.5s;
+            animation-delay: 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+    -webkit-animation-timing-function: step-start;
+            animation-timing-function: step-start;
+    /*box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+}
+
+.select-box-option {
+    display: block;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 12px;
+}
+
+.select-box-option:hover, .select-box-option:focus {
+    color: #546c84;
+    background-color: #fbfbfb;
+}
+
+@-webkit-keyframes HideList {
+    from {
+        -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+    }
+    to {
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
+    }
+}
+
+@keyframes HideList {
+    from {
+        -webkit-transform: scaleY(1);
+                transform: scaleY(1);
+    }
+    to {
+        -webkit-transform: scaleY(0);
+                transform: scaleY(0);
+    }
+}
+
+
 /* Search Box */
 .search-box {
     width: 100%;
     padding: 8px 24px;
-    margin-left: 80px;
-    margin-top: -12px;
+    margin-left: 15px;
+    margin-top: -5px;
     background-color: transparent;
-    transition: transform 250ms ease-in-out;
+    transition: transform 300ms ease-in-out;
     font-size: 14px;
     line-height: 12px;
     color: #5c585c;
@@ -101,7 +247,7 @@
     background-position: 95% center;
     border-radius: 50px;
     border: 1px solid #575756;
-    transition: all 250ms ease-in-out;
+    transition: all 300ms ease-in-out;
     backface-visibility: hidden;
     transform-style: preserve-3d;
 }
@@ -121,107 +267,3 @@
     border-radius: 0;
     background-position: 100% center;
 }
-
-  /* Dropdown */
-  .select-box {
-    position: relative;
-    margin-top: -15px;
-    display: block;
-    width: 150%;
-    font-size: 14px;
-    color: #60666d;
-  }
-  
-  .select-box-current {
-    position: relative;
-    /* box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1); */
-    cursor: pointer;
-    outline: none;
-  }
-  .select-box-current:focus + .select-box-list {
-    opacity: 1;
-    -webkit-animation-name: none;
-            animation-name: none;
-  }
-  .sselect-box-current:focus + .select-box-list .select-box__option {
-    cursor: pointer;
-  }
-  .select-box-current:focus .select-box_icon {
-    -webkit-transform: translateY(-50%) rotate(180deg);
-            transform: translateY(-50%) rotate(180deg);
-  }
-  .select-box_icon {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-    width: 20px;
-    opacity: 0.3;
-    transition: 0.2s ease;
-  }
-  .select-box-value {
-    display: flex;
-  }
-  .select-box-input {
-    display: none;
-  }
-  .select-box-input:checked + .select-box-input-text {
-    display: block;
-  }
-  .select-box-input-text {
-    display: none;
-    width: 100%;
-    margin: 0;
-    padding: 15px;
-    background-color: #fff;
-  }
-  .select-box-list {
-    position: absolute;
-    width: 100%;
-    padding: 0;
-    list-style: none;
-    opacity: 0;
-    -webkit-animation-name: HideList;
-            animation-name: HideList;
-    -webkit-animation-duration: 0.5s;
-            animation-duration: 0.5s;
-    -webkit-animation-delay: 0.5s;
-            animation-delay: 0.5s;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
-    -webkit-animation-timing-function: step-start;
-            animation-timing-function: step-start;
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
-  }
-  .select-box-option {
-    display: block;
-    padding: 15px;
-    background-color: #fff;
-  }
-  .select-box-option:hover, .select-box-option:focus {
-    color: #546c84;
-    background-color: #fbfbfb;
-  }
-  
-  @-webkit-keyframes HideList {
-    from {
-      -webkit-transform: scaleY(1);
-              transform: scaleY(1);
-    }
-    to {
-      -webkit-transform: scaleY(0);
-              transform: scaleY(0);
-    }
-  }
-  
-  @keyframes HideList {
-    from {
-      -webkit-transform: scaleY(1);
-              transform: scaleY(1);
-    }
-    to {
-      -webkit-transform: scaleY(0);
-              transform: scaleY(0);
-    }
-  }
