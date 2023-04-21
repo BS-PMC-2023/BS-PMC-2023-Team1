@@ -15,16 +15,16 @@
     grid-template-columns: 150px 1fr;
   }
 
-/* Slide up the navbar when toggle up */
-.sticky.slide-up {
+/* Slide up the navbar when toggle top, using navbar.js */
+.slide-up {
     height: 65px;
     padding-top: 5px;
     transition: height 0.3s ease-in-out, padding-top 0.3s ease-in-out;
     box-shadow: none;
 }
 
-/* Slide down the navbar when toggle down */
-.sticky.slide-down {
+/* Slide down the navbar when toggle down, using navbar.js */
+.slide-down {
     height: 85px;
     padding-top: 15px;
     transition: height 0.3s ease-in-out, padding-top 0.3s ease-in-out;
@@ -122,7 +122,6 @@
 .select-box-current {
     position: relative;
     padding: 2px 8px 2px 2px;
-    /* box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1); */
     cursor: pointer;
     outline: none;
 }
@@ -190,8 +189,9 @@
     -webkit-animation-timing-function: step-start;
             animation-timing-function: step-start;
     /*box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);*/
-    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2);*/
     border-radius: 12px;
+    background-color: #ffffff;
 }
 
 .select-box-option {
@@ -226,6 +226,16 @@
         -webkit-transform: scaleY(0);
                 transform: scaleY(0);
     }
+}
+
+/* Cancel shadow effect for dropbox when toggle top, using navbar.js*/
+.dropbox-unshadowed {
+    box-shadow:none;
+}
+
+/* Apply shadow effect for dropbox when toggle top, using navbar.js*/
+.dropbox-shadowed {
+    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
 
