@@ -49,7 +49,7 @@ def register_user(request):
                 user.is_active = False
                 user.save()
 
-            return redirect('home')
+            return redirect('register')
     else:
         form = UserRegisterForm()
     return render(request, 'registration/register.html', {'form': form})

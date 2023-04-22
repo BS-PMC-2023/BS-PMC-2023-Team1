@@ -1,0 +1,40 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+    <head>
+        <h2 style="margin-top: 150px; display: flex; justify-content: center; align-items: center">Users</h2>
+    </head>
+
+    <body>
+        <table style="margin: 0 auto; margin-top: 50px;">
+            <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Is Expert</th>
+                <th>Is Admin</th>
+                <th>Pic</th>
+                <th>Certificate</th>
+                <th>Pending</th>
+            </tr>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.user.username }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.isexpert }}</td>
+                <td>{{ user.isAdmin }}</td>
+                <td><img src="{{ user.pic.url }}" width="50" height="50" /></td>
+{#                <td><img src="{{ user.Certificate.url }}" width="50" height="50" /></td>#}
+                <td>{{ user.Pending }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </body>
+    {% endblock %}
+</html>
