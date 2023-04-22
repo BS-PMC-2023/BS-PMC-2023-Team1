@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'registration',
     'articles',
     'home_page',
+    'users',
 ]
 
 MIDDLEWARE = [
