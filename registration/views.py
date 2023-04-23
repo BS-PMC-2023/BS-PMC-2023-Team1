@@ -49,7 +49,7 @@ def register_user(request):
                 user.is_active = False
                 user.save()
 
-            return redirect('register')
+            return redirect('home')
     else:
         form = UserRegisterForm()
     return render(request, 'registration/register.html', {'form': form})
@@ -68,7 +68,7 @@ def Login(request):
         if user is not None:
             form = login(request, user)
             messages.success(request, f' wecome {username} !!')
-            return redirect('neww')
+            return redirect('home')
         else:
             messages.info(request, f'account does not exit plz sign in')
     form = AuthenticationForm()

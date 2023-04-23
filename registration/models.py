@@ -8,6 +8,6 @@ class UserData(models.Model):
     lastname = models.CharField(max_length=20, default='SOME STRING')
     isexpert = models.BooleanField(default=False)
     isAdmin = models.BooleanField(default=False)
-    pic = models.ImageField(upload_to='media/', null=True)
-    Certificate = models.ImageField(upload_to='media/Certificates/', null=True)
+    pic = models.ImageField(upload_to='media/Certificates/', null=True)
+    Certificate = models.ImageField(upload_to='media/', null=True)
     Pending = models.BooleanField(default=False)

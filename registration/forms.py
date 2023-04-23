@@ -7,7 +7,7 @@ class UserRegisterForm(UserCreationForm):
     firstname = forms.CharField()
     lastname = forms.CharField()
     isexpert = forms.BooleanField(required=False)
-    pic = forms.ImageField()
+    pic = forms.ImageField(required=False)
     isAdmin = forms.BooleanField(required=False)
     Certificate = forms.ImageField(required=False)
     Pending = forms.BooleanField(required=False)
