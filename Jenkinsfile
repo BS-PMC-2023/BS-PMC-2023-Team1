@@ -8,6 +8,12 @@ pipeline {
             }
         }
         
+        stage('Preprocessing - python install') {
+            steps {
+                sudo apt-get install python3-venv
+            }
+        }
+        
         stage('Build') {
             steps {
                 sh 'python3 -m venv venv' // Create a virtual environment
