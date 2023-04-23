@@ -9,6 +9,16 @@
     </head>
 
     <body>
+          <p>Please select your filter :</p>
+<form method="POST" id='ss'>
+    {% csrf_token %}
+    <input type="radio" id="expert" name="expert" value="is expert">
+            <label for="expert">expert</label><br>
+
+                  <input type="radio" id="normal" name="normal" value="is normal user">
+            <label for="normal">normal</label><br>
+          <input type="submit" value="Submit">
+        </form>
         <table style="margin: 0 auto; margin-top: 50px;">
             <tr>
                 <th>Username</th>
