@@ -1,10 +1,6 @@
 pipeline {
     agent any
     
-    options {
-        timeout(time: 1, unit: 'HOURS') // Set timeout for the entire pipeline
-    }
-    
     stages {
         stage('Checkout') {
             steps {
@@ -19,24 +15,6 @@ pipeline {
                 sh 'python manage.py migrate' // Apply database migrations
                 sh 'python manage.py test' // Run tests
             }
-        }
-        
-        stage('Deploy') {
-            steps {
-                // Perform deployment tasks (e.g., pushing to a remote server, updating a container, etc.)
-            }
-        }
-    }
-    
-    post {
-        always {
-            // Cleanup tasks (e.g., removing temporary files, etc.)
-        }
-        success {
-            // Actions to take on successful pipeline execution
-        }
-        failure {
-            // Actions to take on failed pipeline execution
         }
     }
 }
