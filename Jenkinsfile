@@ -10,7 +10,8 @@ pipeline {
         
         stage('Preprocessing - python install') {
             steps {
-                sudo apt-get install python3-venv
+                sh 'apt-get update' // Update the package list
+                sh 'apt-get install -y python3-venv' // Install the Python 3 virtual environment package
             }
         }
         
