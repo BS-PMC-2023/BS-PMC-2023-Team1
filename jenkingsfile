@@ -1,1 +1,42 @@
-
+pipeline {
+    agent any
+    
+    options {
+        timeout(time: 1, unit: 'HOURS') // Set timeout for the entire pipeline
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm // Checkout your source code from your version control system (e.g., Git)
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'pip install -r requirements.txt' // Install project dependencies
+                sh 'python manage.py collectstatic --noinput' // Collect static files
+                sh 'python manage.py migrate' // Apply database migrations
+                sh 'python manage.py test' // Run tests
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Perform deployment tasks (e.g., pushing to a remote server, updating a container, etc.)
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Cleanup tasks (e.g., removing temporary files, etc.)
+        }
+        success {
+            // Actions to take on successful pipeline execution
+        }
+        failure {
+            // Actions to take on failed pipeline execution
+        }
+    }
+}
