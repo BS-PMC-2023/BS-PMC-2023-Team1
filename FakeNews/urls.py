@@ -25,9 +25,9 @@ urlpatterns = [
     path('reviews/', include('reviews.urls')),
     path('articles/', include('articles.urls')),
     path('approvelist/', include('admin_panel.urls')),
-    path('', include('registration.urls')),
+    path('registration/', include('registration.urls')),
+    path('users/', include('users.urls')),
     path('', include('home_page.urls')),
-    path('', include('users.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
