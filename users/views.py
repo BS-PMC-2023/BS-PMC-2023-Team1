@@ -13,3 +13,5 @@ def user_list(request):
 
     users = UserData.objects.all()
     return render(request, 'users.html', {'users': users})
+
+
