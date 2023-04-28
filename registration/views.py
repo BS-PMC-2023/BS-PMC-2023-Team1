@@ -34,7 +34,11 @@ def register_user(request):
             firstname = form.cleaned_data.get('firstname')
             lastname = form.cleaned_data.get('lastname')
             isexpert = form.cleaned_data.get('isexpert')
-            pic = form.cleaned_data.get('pic')
+            if 'pic' in form.cleaned_data:
+                pic = form.cleaned_data['pic']
+            else:
+                pic = None
+
             Certificate = form.cleaned_data.get('Certificate')
             isAdmin = form.cleaned_data.get('isAdmin')
             user = User.objects.get(username=username)
