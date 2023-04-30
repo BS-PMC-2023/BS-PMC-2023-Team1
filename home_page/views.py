@@ -10,5 +10,3 @@ def home(request):
         return render(request, 'home.html', {'data': df.iterrows()})
     except:
         return render(request, 'home.html')
-
-
