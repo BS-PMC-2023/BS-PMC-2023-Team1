@@ -9,6 +9,16 @@
     </head>
 
     <body>
+          <p>Please select your filter :</p>
+<form method="POST" id='ss'>
+    {% csrf_token %}
+    <input type="radio" id="expert" name="expert" value="is expert">
+            <label for="expert">expert</label><br>
+
+                  <input type="radio" id="normal" name="normal" value="is normal user">
+            <label for="normal">normal</label><br>
+          <input type="submit" value="Submit">
+        </form>
         <table style="margin: 0 auto; margin-top: 50px;">
             <tr>
                 <th>Username</th>
@@ -28,8 +38,17 @@
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.isexpert }}</td>
                 <td>{{ user.isAdmin }}</td>
+                {% if user.pic %}
                 <td><img src="{{ user.pic.url }}" width="50" height="50" /></td>
-{#                <td><img src="{{ user.Certificate.url }}" width="50" height="50" /></td>#}
+                {% else %}
+                <td><img src="https://legacycentennialhills.com/wp-content/uploads/2015/07/No-Image-Available1.png" width="50" height="50" /></td>
+                {% endif %}
+                {% if user.Certificate %}
+    {                <td><img src="{{ user.Certificate.url }}" width="50" height="50" /></td>}
+                {% else %}
+                <td><img src="https://legacycentennialhills.com/wp-content/uploads/2015/07/No-Image-Available1.png" width="50" height="50" /></td>
+                {% endif %}
+
                 <td>{{ user.Pending }}</td>
             </tr>
             {% endfor %}

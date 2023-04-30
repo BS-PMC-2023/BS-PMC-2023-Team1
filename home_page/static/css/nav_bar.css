@@ -34,7 +34,7 @@
 /* Fake News home button */
 .home-button {
     position: relative;
-    margin-top: 5px;
+    margin-top: 2px;
     display: flex;
     padding-top: 19px;
     justify-self: center;
