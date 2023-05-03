@@ -1,5 +1,5 @@
 # Fake News Project
-<iframe src="https://giphy.com/embed/l0Iyau7QcKtKUYIda" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/reactionseditor-reaction-l0Iyau7QcKtKUYIda"></a></p>
+![](https://media.giphy.com/media/l0Iyau7QcKtKUYIda/giphy.gif)
 <p>
     The project's goal is to establish a system that will reduce the amount of fake news consumed by the readers.<br>
     We are building and training a deep learning model that will classify news articels as Fake or Legit.<br>
