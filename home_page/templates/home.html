@@ -27,36 +27,6 @@
             <h4 class="quote"><mark style="background-color: #ded7d7; color: black;"> What you're seeing and what you're reading</mark> <span><mark style="background-color: #ded7d7; color: black;">is not what's happening</mark> - Donald Trump</span></h4>
             <h4 class="quote"><span-right>"</span-right></h4>
         </div>
-
-        <!-- Presenting articles inside cards -->
-        <div class="container-fluid text-center py-3">
-            <h3 style="margin-top: 200px; font-family: 'Montserrat', sans-serif; font-weight: bold;">Top recent articles</h3>
-        </div>
-        <div class="container text-center" style="margin-top: 30px">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                {% for index, row in data %}
-                <div class="col">
-                    <div class="card h-100 cards">
-                        <a href={{ row.link }}>
-                            <img src={{ row.img }} class="card-img-top" alt="Image">
-                        </a>
-                        <div class="card-body">
-                            <a href={{ row.link }}>
-                                <h5 class="card-title">{{ row.title }}</h5>
-                            </a>
-                            <p class="card-text">{{ row.content|slice:":200" }}...
-                                <a style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: bold;" href={{ row.link }}>[read more]</a>
-                            </p>
-
-                        </div>
-                        <div class="card-footer text-body-secondary">
-                            {{ row.date }}
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
     </body>
     {% endblock %}
 </html>
