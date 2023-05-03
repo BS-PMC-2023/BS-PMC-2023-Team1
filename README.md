@@ -24,7 +24,7 @@
 <p>
     Project's development team:<br>
     - Din Ezra, dinezra11@gmail.com <br>
-    - Shai Mastitz <br>
-    - Lior Cohen <br>
+    - Shai Mastitz, shaima7@ac.sce.ac.il <br>
+    - Lior Cohen, liorco2066@gmail.com <br>
     - Hadar Isaacson, hadaris@ac.sce.ac.il
 </p>
