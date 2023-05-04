@@ -48,6 +48,6 @@ class UserRegisterForm(UserCreationForm):
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
-        if password1 != password2:
-            raise forms.ValidationError("Your passwords do not match")
+        # if password1 != password2:
+        #   raise forms.ValidationError("Your passwords do not match")
         return password1
