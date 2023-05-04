@@ -29,6 +29,7 @@
                 <th>Pic</th>
                 <th>Certificate</th>
                 <th>Pending</th>
+                <th>Delete</th>
             </tr>
         <tbody>
             {% for user in users %}
@@ -50,6 +51,10 @@
                 {% endif %}
 
                 <td>{{ user.Pending }}</td>
+                <form method="POST" action="{% url 'delete_user' user.user.id %}">
+                {% csrf_token %}
+                 <td><button type="submit">Delete</button></td>
+                </form>
             </tr>
             {% endfor %}
         </tbody>
