@@ -10,6 +10,10 @@ def home(request):
     return render(request, 'home.html')
 
 
+def loading(request):
+    return render(request, 'loading.html')
+
+
 def myProfile(request):
     if request.method == 'POST':
         first_name = request.POST.get('firstname')
@@ -19,21 +23,21 @@ def myProfile(request):
         profilepicture = request.FILES.get('profilepicture')
         certificatepicture = request.POST.get('certificatepicture')
         if first_name:
-            UserData.objects.filter(id=request.user.id).update(firstname=first_name)
+            UserData.objects.filter(user_id=request.user.id).update(firstname=first_name)
         if last_name:
-            UserData.objects.filter(id=request.user.id).update(lastname=last_name)
+            UserData.objects.filter(user_id=request.user.id).update(lastname=last_name)
         if password1 and password2 and password1 == password2:
-            user = User.objects.get(username=request.user.username)
+            user = User.objects.get(username=request.user.id)
             user.set_password(password1)
             user.save()
         if profilepicture:
-            user1 = UserData.objects.get(id=request.user.id)
+            user1 = UserData.objects.get(user_id=request.user.id)
             user1.pic = profilepicture
             user1.save()
         if certificatepicture:
-            user2 = UserData.objects.get(id=request.user.id)
+            user2 = UserData.objects.get(user_id=request.user.id)
             user2.Certificate = certificatepicture
             user2.save()
 
-    users = UserData.objects.filter(id=request.user.id)
+    users = UserData.objects.filter(user_id=request.user.id)
     return render(request, 'myProfile.html', {'users': users})
