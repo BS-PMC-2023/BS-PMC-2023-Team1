@@ -84,6 +84,7 @@ button:hover:before {
 }
 
 </style>
+ <link rel="stylesheet" type="text/css" href="../static/css/loginFirst.css">
 {% extends 'navbar.html' %}
 {% block content %}
     <form method="POST" id='profile' enctype="multipart/form-data">
@@ -103,10 +104,14 @@ button:hover:before {
         <br>
         <br>
         <!-- /single sentence description -->
+    {% if  user.is_authenticated %}
     {% for user in users %}
       <div class="uxa-user-avatar">
-
+        {% if user.pic %}
         <img src="{{ user.pic.url }}" alt="User avatar">
+        {% else %}
+               <img src="https://legacycentennialhills.com/wp-content/uploads/2015/07/No-Image-Available1.png" alt="User avatar" />
+        {% endif %}
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       </div>
         <pre>
@@ -132,6 +137,45 @@ button:hover:before {
         <button type="submit" class="button1">Save</button>
     </div>
 {% endfor %}
+        {% else %}
+  <div class="inner">
+
+	<div class="kirin"></div>
+
+	<svg id="wave" viewBox="0 0 746 300">
+
+						<defs>
+							<path id="curve" d="M.35 56.81c53.28 0 53.28 22 106.57 11s53.28-11 106.57-11 53.28 11 106.57 11 53.28-11 106.56-11 53.29 11 106.58 11 53.28-11 106.57-11 53.29 11 106.58 11" />
+						</defs>
+
+						<text id="desc" x="55%" text-anchor="middle" transform="translate(0, 0)">
+							<textPath xlink:href="#curve">
+								Opps! You seem to be offline!
+
+							</textPath>
+						</text>
+
+						<text id="number" x="50%" text-anchor="middle" transform="translate(0, 140)">
+							<textPath xlink:href="#curve">
+                                Login First
+							</textPath>
+						</text>
+
+					</svg>
+
+	<div class="wave-background">
+		<div class="back"></div>
+		<div class="middle"></div>
+		<div class="front"></div>
+	</div>
+
+</div>
+
+
+
+
+
+{% endif %}
 
   </div>
 </div>
