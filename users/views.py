@@ -16,6 +16,12 @@ def user_list(request):
     users = UserData.objects.all()
     return render(request, 'users.html', {'users': users , 'onlineuser':onlineuser})
 
+def delete_user(request, id):
+    print(id)
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect('users')
+
 
 def delete_user(request, id):
     print(id)
