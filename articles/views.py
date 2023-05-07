@@ -14,7 +14,7 @@ def catalog(request):
         addApprove(request, isApprove)
 
     try:
-        engine = articlesModel.initializeEngine("Sports")
+        engine = articlesModel.initializeEngine("News")
         df = articlesModel.getPage(engine, 1)
 
         return render(request, 'articles/article.html', {'data': df.iterrows()})
@@ -33,7 +33,7 @@ def addApprove(request, isApprove: bool):
     if predictObj:
         predictObj.all().delete()
 
-    # Add the new approve/denial
+    # Add the new approval/denial
     PredictionApproves.objects.create(
         link = link,
         expertId = expert,

@@ -56,7 +56,7 @@ def getPage(engine: g, page: int = 1):
             return [article.text, article.top_img]
 
     # Find Articles
-    df = pd.DataFrame(engine.page_at(page)).iloc[:9]
+    df = pd.DataFrame(engine.page_at(page)).iloc[:6]
 
     # Check which articles are already cached in the database
     df[['content', 'img']] = df['link'].apply(lambda l: getContent(l)).to_list()
