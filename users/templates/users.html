@@ -192,6 +192,7 @@ text {
                 <th>Certificate</th>
                 <th>Pending</th>
                 <th>Delete</th>
+                <th>Update Pending</th>
             </tr>
         <tbody>
             {% for user in users %}
@@ -217,6 +218,10 @@ text {
             <form method="POST" action="{% url 'delete_user' user.user.id %}">
                 {% csrf_token %}
                  <td><button type="submit">Delete</button></td>
+            </form>
+            <form method="POST" action="{% url 'approve' user.user.id %}">
+                {% csrf_token %}
+                 <td><button type="submit">approve</button></td>
             </form>
             </tr>
             {% endfor %}

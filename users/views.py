@@ -8,16 +8,24 @@ def user_list(request):
     if request.method == 'POST':
         if request.POST.get('expert'):
             users = UserData.objects.filter(isexpert=True)
-            return render(request, 'users.html', {'users': users , 'onlineuser':onlineuser})
+            return render(request, 'users.html', {'users': users, 'onlineuser': onlineuser})
         else:
             users = UserData.objects.filter(isexpert=False)
-            return render(request, 'users.html', {'users': users , 'onlineuser':onlineuser})
+            return render(request, 'users.html', {'users': users, 'onlineuser': onlineuser})
 
     users = UserData.objects.all()
-    return render(request, 'users.html', {'users': users , 'onlineuser':onlineuser})
+    return render(request, 'users.html', {'users': users, 'onlineuser': onlineuser})
+
 
 def delete_user(request, id):
     user = User.objects.get(id=id)
     user.delete()
     return redirect('users')
 
+
+def approve(request, id):
+    UserData.objects.filter(user_id=id).update(Pending=False)
+    user = User.objects.get(id=id)
+    user.is_active = True
+    user.save()
+    return redirect('users')
