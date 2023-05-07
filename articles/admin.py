@@ -12,4 +12,4 @@ class RequestDemoAdmin(admin.ModelAdmin):
 @admin.register(PredictionApproves)
 class RequestDemoAdmin(admin.ModelAdmin):
     list_display = [field.name for field in
-                    ArticleCache._meta.get_fields()]
+                    PredictionApproves._meta.get_fields()]

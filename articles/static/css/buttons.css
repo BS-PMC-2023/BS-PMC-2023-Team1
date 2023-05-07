@@ -1,0 +1,18 @@
+.approveBtn {
+    opacity: 0.5;
+    filter: alpha(opacity=40);
+}
+
+.approveBtn:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100);
+}
+
+.buttonsDiv {
+    text-align: center;
+}
+
+figure {
+    display: inline-block;
+    text-align: center;
+}
