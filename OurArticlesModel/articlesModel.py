@@ -1,7 +1,8 @@
 from GoogleNews import GoogleNews as g
 import pandas as pd
 import newspaper
-from articles.models import ArticleCache
+from django.db.models import Count
+from articles.models import ArticleCache, PredictionApproves
 
 
 def initializeEngine(query: str = None, language: str = "en"):
@@ -60,4 +61,8 @@ def getPage(engine: g, page: int = 1):
     # Check which articles are already cached in the database
     df[['content', 'img']] = df['link'].apply(lambda l: getContent(l)).to_list()
 
-    return df[['title', 'content', 'media', 'link', 'img', 'date']]
+    # Get statistical data
+    df['approves'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=True).aggregate(Count('expertId'))['expertId__count'])
+    df['denials'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=False).aggregate(Count('expertId'))['expertId__count'])
+
+    return df[['title', 'content', 'media', 'link', 'img', 'date', 'approves', 'denials']]
