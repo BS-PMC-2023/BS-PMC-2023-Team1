@@ -24,8 +24,18 @@ def catalog(request):
 
 def addApprove(request, isApprove: bool):
     data = request.POST
+
+    link = data['link']
+    expert = UserData.objects.filter(user_id=request.user.id).first()
+
+    # Check if already exists, and delete if it is (To avoid duplicates)
+    predictObj = PredictionApproves.objects.filter(link=link, expertId=expert)
+    if predictObj:
+        predictObj.all().delete()
+
+    # Add the new approve/denial
     PredictionApproves.objects.create(
-        link = data['link'],
-        expertId = UserData.objects.filter(user_id=request.user.id).first(),
+        link = link,
+        expertId = expert,
         approved = isApprove
     )
