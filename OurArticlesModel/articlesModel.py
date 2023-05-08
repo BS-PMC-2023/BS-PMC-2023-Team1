@@ -1,4 +1,3 @@
-import keras
 from GoogleNews import GoogleNews as g
 import newspaper
 from django.db.models import Count
@@ -11,8 +10,6 @@ import pickle
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
-from keras.preprocessing.text import one_hot
-from keras.utils import pad_sequences
 
 
 def initializeEngine(query: str = None, language: str = "en"):
@@ -72,13 +69,15 @@ def getPage(engine: g, page: int = 1):
     df[['content', 'img']] = df['link'].apply(lambda l: getContent(l)).to_list()
 
     # Get statistical data
-    df['approves'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=True).aggregate(Count('expertId'))['expertId__count'])
-    df['denials'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=False).aggregate(Count('expertId'))['expertId__count'])
+    df['approvesCount'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=True).aggregate(Count('expertId'))['expertId__count'])
+    df['denialsCount'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=False).aggregate(Count('expertId'))['expertId__count'])
+    df['approvals'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=True))
+    df['denials'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=False))
 
     # Get predictions from classifier
     df['predict'] = getPrediction(df)
 
-    return df[['title', 'content', 'media', 'link', 'img', 'date', 'approves', 'denials', 'predict']]
+    return df[['title', 'content', 'media', 'link', 'img', 'date', 'approvesCount', 'denialsCount', 'predict', 'approvals', 'denials']]
 
 
 def getPrediction(data):

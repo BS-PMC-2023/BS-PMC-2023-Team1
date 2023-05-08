@@ -29,13 +29,14 @@ def addApprove(request, isApprove: bool):
     expert = UserData.objects.filter(user_id=request.user.id).first()
 
     # Check if already exists, and delete if it is (To avoid duplicates)
-    predictObj = PredictionApproves.objects.filter(link=link, expertId=expert)
+    predictObj = PredictionApproves.objects.filter(link=link, expertId=request.user.id)
     if predictObj:
         predictObj.all().delete()
 
     # Add the new approval/denial
     PredictionApproves.objects.create(
         link = link,
-        expertId = expert,
+        expertId = request.user.id,
+        expertName = expert.firstname + ' ' + expert.lastname,
         approved = isApprove
     )
