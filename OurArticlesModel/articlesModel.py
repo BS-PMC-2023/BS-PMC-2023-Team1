@@ -7,6 +7,7 @@ from articles.models import ArticleCache, PredictionApproves
 import re
 import numpy as np
 import pandas as pd
+import pickle
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
@@ -75,7 +76,7 @@ def getPage(engine: g, page: int = 1):
     df['denials'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=False).aggregate(Count('expertId'))['expertId__count'])
 
     # Get predictions from classifier
-    df['predict'] = df.apply(lambda x: getPrediction(x['title']), axis=1)
+    df['predict'] = getPrediction(df)
 
     return df[['title', 'content', 'media', 'link', 'img', 'date', 'approves', 'denials', 'predict']]
 
@@ -86,27 +87,36 @@ def getPrediction(data):
     """
     def preprocessing(rawData):
         """ Preprocess the data. """
+
+        def stemming(content):
+            stemmed_content = re.sub('[^a-zA-Z]', ' ', content)
+            stemmed_content = stemmed_content.lower()
+            stemmed_content = stemmed_content.split()
+            stemmed_content = [ps.stem(word) for word in stemmed_content if not word in stopwords.words('english')]
+            stemmed_content = ' '.join(stemmed_content)
+            return stemmed_content
+
         nltk.download('stopwords')
         ps = PorterStemmer()
-        voc_size = 5000
-        sent_length = 20
+        newData = rawData['media'] + ' ' + rawData['title']
 
         # Tokenization and stop words
-        rawData = re.sub('[^a-zA-Z]', ' ', rawData).lower().split()
-        rawData = [ps.stem(word) for word in rawData if word not in stopwords.words('english')]
-        rawData = ' '.join(rawData)
+        newData = newData.apply(stemming)
 
-        # One-Hot Representation
-        rawData = [one_hot(word, voc_size) for word in rawData]
+        # TF-IDF Vectorization
+        file = open('OurArticlesModel/tfidf vectorizer', 'rb')
+        vectorizer = pickle.load(file)
+        newData = vectorizer.transform(newData)
+        file.close()
 
-        # Embedding Representation
-        rawData = pad_sequences(rawData, padding='pre', maxlen=sent_length)
-
-        return np.array(rawData)
+        return newData
 
     processedData = preprocessing(data)
-    model = keras.models.load_model('OurArticlesModel/Fake News Classifier.h5')
 
-    prediction = (model.predict(processedData) > 0.5).astype("int32")
+    file = open('OurArticlesModel/Fake News Classifier - LR', 'rb')
+    model = pickle.load(file)
+    prediction = model.predict(processedData).astype(bool)
+    prediction = pd.Series(prediction).apply(lambda x: "Legit" if x else "FAKE!")
+    file.close()
 
     return prediction
