@@ -1,25 +1,17 @@
+import keras
 from GoogleNews import GoogleNews as g
-import pandas as pd
 import newspaper
 from django.db.models import Count
 from articles.models import ArticleCache, PredictionApproves
 
 import re
-import pickle
 import numpy as np
 import pandas as pd
-
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
-
 from keras.preprocessing.text import one_hot
 from keras.utils import pad_sequences
-from keras.models import Sequential
-from keras.layers import LSTM, Dense, Dropout, Embedding
 
 
 def initializeEngine(query: str = None, language: str = "en"):
@@ -82,12 +74,39 @@ def getPage(engine: g, page: int = 1):
     df['approves'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=True).aggregate(Count('expertId'))['expertId__count'])
     df['denials'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=False).aggregate(Count('expertId'))['expertId__count'])
 
-    return df[['title', 'content', 'media', 'link', 'img', 'date', 'approves', 'denials']]
+    # Get predictions from classifier
+    df['predict'] = df.apply(lambda x: getPrediction(x['title']), axis=1)
+
+    return df[['title', 'content', 'media', 'link', 'img', 'date', 'approves', 'denials', 'predict']]
 
 
 def getPrediction(data):
-    """ Given a data, use the classifier to predict whether the article is FAKE or LEGIT. """
-    def preprocessing(data):
+    """ Given a data, use the classifier to predict whether the article is FAKE or LEGIT.
+    Return the preprocessed data.
+    """
+    def preprocessing(rawData):
         """ Preprocess the data. """
         nltk.download('stopwords')
+        ps = PorterStemmer()
+        voc_size = 5000
+        sent_length = 20
 
+        # Tokenization and stop words
+        rawData = re.sub('[^a-zA-Z]', ' ', rawData).lower().split()
+        rawData = [ps.stem(word) for word in rawData if word not in stopwords.words('english')]
+        rawData = ' '.join(rawData)
+
+        # One-Hot Representation
+        rawData = [one_hot(word, voc_size) for word in rawData]
+
+        # Embedding Representation
+        rawData = pad_sequences(rawData, padding='pre', maxlen=sent_length)
+
+        return np.array(rawData)
+
+    processedData = preprocessing(data)
+    model = keras.models.load_model('OurArticlesModel/Fake News Classifier.h5')
+
+    prediction = (model.predict(processedData) > 0.5).astype("int32")
+
+    return prediction
