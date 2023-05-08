@@ -4,6 +4,23 @@ import newspaper
 from django.db.models import Count
 from articles.models import ArticleCache, PredictionApproves
 
+import re
+import pickle
+import numpy as np
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+
+from keras.preprocessing.text import one_hot
+from keras.utils import pad_sequences
+from keras.models import Sequential
+from keras.layers import LSTM, Dense, Dropout, Embedding
+
 
 def initializeEngine(query: str = None, language: str = "en"):
     """ Given a query, initialize the engine for the article retrieval.
@@ -66,3 +83,11 @@ def getPage(engine: g, page: int = 1):
     df['denials'] = df['link'].apply(lambda l: PredictionApproves.objects.filter(link=l, approved=False).aggregate(Count('expertId'))['expertId__count'])
 
     return df[['title', 'content', 'media', 'link', 'img', 'date', 'approves', 'denials']]
+
+
+def getPrediction(data):
+    """ Given a data, use the classifier to predict whether the article is FAKE or LEGIT. """
+    def preprocessing(data):
+        """ Preprocess the data. """
+        nltk.download('stopwords')
+
