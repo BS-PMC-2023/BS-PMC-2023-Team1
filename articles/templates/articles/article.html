@@ -43,8 +43,29 @@
 
                         </div>
                         <div class="card-footer text-body-secondary">
-                            {{ row.date }}
+                            {{ row.media }}
                             <br>
+                            {{ row.date }}
+                            <br><br><br>
+                            Article's Classification: {{ row.predict }}
+                            <br>
+                            <div class="help-tip">
+                                <img class="approveBtn" src="../static/experts.png" width="100" height="45">
+                                <p>
+                                    <b>Classification approved by:</b><br>
+                                    {% for a in row.approvals %}
+                                        {{ a.expertName }}
+                                        <br>
+                                    {% endfor %}
+                                    <br>
+                                    <b>Classification denied by:</b><br>
+                                    {% for a in row.denials %}
+                                        {{ a.expertName }}
+                                        <br>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                            <br><br>
                             <form action="/articles/" method="post">
                                     {% csrf_token %}
                                 <input type="hidden" name="link" value={{ row.link }}>
@@ -52,12 +73,12 @@
                                 <div class="buttonsDiv">
                                     <figure class="item">
                                         <input type="image" class="approveBtn" src="../static/like.png" width="45" height="45" name="likeBtn" value="1">
-                                        <figcaption class="caption">{{ row.approves }}</figcaption>
+                                        <figcaption class="caption">{{ row.approvesCount }}</figcaption>
                                     </figure>
 
                                     <figure class="item">
                                         <input type="image" class="approveBtn" src="../static/unlike.png" width="45" height="45" name="dislikeBtn" value="0">
-                                        <figcaption class="caption">{{ row.denials }}</figcaption>
+                                        <figcaption class="caption">{{ row.denialsCount }}</figcaption>
                                     </figure>
                                 </div>
                             </form>
@@ -67,6 +88,7 @@
                 {% endfor %}
             </div>
         </div>
+        <br><br><br>
     </body>
     {% endblock %}
 </html>

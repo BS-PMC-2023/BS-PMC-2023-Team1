@@ -14,8 +14,8 @@ def catalog(request):
         addApprove(request, isApprove)
 
     try:
-        engine = articlesModel.initializeEngine("Sports")
-        df = articlesModel.getPage(engine, 1)
+        engine = articlesModel.initializeEngine("News")
+        df = articlesModel.getPage(engine, 3)
 
         return render(request, 'articles/article.html', {'data': df.iterrows()})
     except:
@@ -29,13 +29,14 @@ def addApprove(request, isApprove: bool):
     expert = UserData.objects.filter(user_id=request.user.id).first()
 
     # Check if already exists, and delete if it is (To avoid duplicates)
-    predictObj = PredictionApproves.objects.filter(link=link, expertId=expert)
+    predictObj = PredictionApproves.objects.filter(link=link, expertId=request.user.id)
     if predictObj:
         predictObj.all().delete()
 
-    # Add the new approve/denial
+    # Add the new approval/denial
     PredictionApproves.objects.create(
         link = link,
-        expertId = expert,
+        expertId = request.user.id,
+        expertName = expert.firstname + ' ' + expert.lastname,
         approved = isApprove
     )
