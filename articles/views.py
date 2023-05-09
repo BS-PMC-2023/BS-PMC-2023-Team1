@@ -15,7 +15,8 @@ def catalog(request):
 
     try:
         engine = articlesModel.initializeEngine("News")
-        df = articlesModel.getPage(engine, 2)
+        df = articlesModel.getPage(engine, 3)
+
         return render(request, 'articles/article.html', {'data': df.iterrows()})
     except:
         return render(request, 'articles/article.html')
