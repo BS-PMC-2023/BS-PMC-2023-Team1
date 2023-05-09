@@ -260,7 +260,7 @@ text {
                 <td><img src="https://legacycentennialhills.com/wp-content/uploads/2015/07/No-Image-Available1.png" width="50" height="50" /></td>
                 {% endif %}
                 {% if user.Certificate %}
-    {                <td><img src="{{ user.Certificate.url }}" width="50" height="50" /></td>}
+                    <td><img src="{{ user.Certificate.url }}" width="50" height="50" /></td>
                 {% else %}
                 <td><img src="https://legacycentennialhills.com/wp-content/uploads/2015/07/No-Image-Available1.png" width="50" height="50" /></td>
                 {% endif %}
@@ -271,10 +271,14 @@ text {
                 {% csrf_token %}
                  <td><button type="submit">Delete</button></td>
             </form>
+            {% if user.Pending and  user.isexpert  %}
             <form method="POST" action="{% url 'approve' user.user.id %}">
                 {% csrf_token %}
                  <td><button type="submit">approve</button></td>
             </form>
+                {% else %}
+                  <td><label >not available</label></td>
+            {% endif %}
               <form method="POST" action="{% url 'myProfile' %}">
                 {% csrf_token %}
                   <input type="hidden" name="useridd" value="{{ user.user.id }}"  >
