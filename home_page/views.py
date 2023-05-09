@@ -11,8 +11,7 @@ def home(request):
 
 def myarticle(request):
 
-    articles = PredictionApproves.objects.filter(expertId__user_id__exact=request.user.id)
-    print(articles)
+    articles = PredictionApproves.objects.filter(expertId=request.user.id)
     return render(request, 'myarticle.html' ,{'articles': articles})
 
 
