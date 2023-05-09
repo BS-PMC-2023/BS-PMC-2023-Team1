@@ -31,7 +31,7 @@
                 <div class="col">
                     <div class="card h-100 cards">
                         <a href={{ row.link }}>
-                            <img src={{ row.img }} class="card-img-top" alt="Image">
+                            <img src={{ row.img }} class="card-img-top" style="height: auto; width: 100%" alt="Image">
                         </a>
                         <div class="card-body">
                             <a href={{ row.link }}>
@@ -69,6 +69,7 @@
                             <form action="/articles/" method="post">
                                     {% csrf_token %}
                                 <input type="hidden" name="link" value={{ row.link }}>
+                                <input type="hidden" name="title" value={{ row.title }}>
 
                                 <div class="buttonsDiv">
                                     <figure class="item">
