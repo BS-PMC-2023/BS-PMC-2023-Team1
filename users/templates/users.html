@@ -175,13 +175,64 @@ text {
     <form method="POST" id='ss'>
     {% csrf_token %}
     <input type="radio" id="expert" name="expert" value="is expert">
-            <label for="expert">expert</label><br>
+           <label for="expert">expert</label><br>
 
                   <input type="radio" id="normal" name="normal" value="is normal user">
-            <label for="normal">normal</label><br>
+           <label for="normal">normal</label><br>
           <input type="submit" value="Submit">
         </form>
-        <table style="margin: 0 auto; margin-top: 50px;">
+         <style>
+         html, body {
+	 height: 100%;
+}
+ body {
+	 margin: 0;
+	 background: linear-gradient(45deg, #4b4f4f, #e8efee);
+	 font-family: sans-serif;
+	 font-weight: 100;
+}
+ .container {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 transform: translate(-50%,-50%);
+}
+ table {
+	 width: 800px;
+	 border-collapse: collapse;
+	 overflow: hidden;
+	 box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+ th, td {
+	 padding: 15px;
+	 background-color: rgba(255,255,255,0.2);
+	 color: #fff;
+}
+ th {
+	 text-align: left;
+}
+ thead th {
+}
+ tbody tr:hover {
+	 background-color: rgba(255,255,255,0.3);
+}
+ tbody td {
+	 position: relative;
+}
+ tbody td:hover:before {
+	 content: "";
+	 position: absolute;
+	 left: 0;
+	 right: 0;
+	 top: -9999px;
+	 bottom: -9999px;
+	 background-color: rgba(255,255,255,0.2);
+	 z-index: -1;
+}
+
+         </style>
+<div class="container">
+        <table >
             <tr>
                 <th>Username</th>
                 <th>First Name</th>
@@ -193,6 +244,7 @@ text {
                 <th>Pending</th>
                 <th>Delete</th>
                 <th>Update Pending</th>
+                 <th>change profile</th>
             </tr>
         <tbody>
             {% for user in users %}
@@ -232,7 +284,7 @@ text {
             {% endfor %}
         </tbody>
     </table>
-
+</div>
 
 
 
