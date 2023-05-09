@@ -1,0 +1,24 @@
+{% extends 'navbar.html' %}
+ {% block content %}
+     <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <table style="margin: 0 auto; margin-top: 50px;">
+            <tr>
+                <th>Username</th>
+
+            </tr>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td>{{ article.link }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

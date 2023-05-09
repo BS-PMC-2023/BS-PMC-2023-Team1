@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from registration.models import UserData
-
+from articles.models import PredictionApproves
 from django.contrib.auth.models import User
 import os
 from django.conf import settings
@@ -8,6 +8,13 @@ from django.conf import settings
 
 def home(request):
     return render(request, 'home.html')
+
+def myarticle(request):
+
+    articles = PredictionApproves.objects.filter(expertId__user_id__exact=request.user.id)
+    print(articles)
+    return render(request, 'myarticle.html' ,{'articles': articles})
+
 
 
 def myProfile(request):
@@ -67,5 +74,3 @@ def myProfile(request):
 
     users = UserData.objects.filter(user_id=request.user.id)
     return render(request, 'myProfile.html', {'users': users})
-
-
