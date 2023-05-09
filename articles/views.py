@@ -6,6 +6,8 @@ from .models import PredictionApproves
 
 # Create your views here.
 def catalog(request):
+    page = 1
+
     if request.method == 'POST':
         if request.POST.get('likeBtn.x'):
             isApprove = True
@@ -15,11 +17,14 @@ def catalog(request):
 
     try:
         engine = articlesModel.initializeEngine("News")
-        df = articlesModel.getPage(engine, 3)
+        df = articlesModel.getPage(engine, page)
 
         return render(request, 'articles/article.html', {'data': df.iterrows()})
     except:
-        return render(request, 'articles/article.html')
+        engine = articlesModel.initializeEngine("News")
+        df = articlesModel.getPage(engine, page+1)
+
+        return render(request, 'articles/article.html', {'data': df.iterrows()})
 
 
 def addApprove(request, isApprove: bool):
