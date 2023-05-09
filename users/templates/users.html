@@ -223,6 +223,11 @@ text {
                 {% csrf_token %}
                  <td><button type="submit">approve</button></td>
             </form>
+              <form method="POST" action="{% url 'myProfile' %}">
+                {% csrf_token %}
+                  <input type="hidden" name="useridd" value="{{ user.user.id }}"  >
+                 <td><button type="submit">change Profile</button></td>
+            </form>
             </tr>
             {% endfor %}
         </tbody>
