@@ -34,7 +34,7 @@ def catalog(request):
 
 def addApprove(request, isApprove: bool):
     data = request.POST
-
+    title = data['title']
     link = data['link']
     expert = UserData.objects.filter(user_id=request.user.id).first()
 
@@ -45,6 +45,7 @@ def addApprove(request, isApprove: bool):
 
     # Add the new approval/denial
     PredictionApproves.objects.create(
+        title = title,
         link = link,
         expertId = request.user.id,
         expertName = expert.firstname + ' ' + expert.lastname,
