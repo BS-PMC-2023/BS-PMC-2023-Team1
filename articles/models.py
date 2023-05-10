@@ -11,6 +11,7 @@ class ArticleCache(models.Model):
 
 
 class PredictionApproves(models.Model):
+    title = models.CharField(max_length=200, default="unknown")
     link = models.CharField(max_length=200, default="unknown")
     expertId = models.IntegerField()
     expertName = models.CharField(max_length=50, default="unknown")

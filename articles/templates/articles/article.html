@@ -31,7 +31,7 @@
                 <div class="col">
                     <div class="card h-100 cards">
                         <a href={{ row.link }}>
-                            <img src={{ row.img }} class="card-img-top" alt="Image">
+                            <img src={{ row.img }} class="card-img-top" style="height: auto; width: 100%" alt="Image">
                         </a>
                         <div class="card-body">
                             <a href={{ row.link }}>
@@ -69,6 +69,7 @@
                             <form action="/articles/" method="post">
                                     {% csrf_token %}
                                 <input type="hidden" name="link" value={{ row.link }}>
+                                <input type="hidden" name="title" value={{ row.title }}>
 
                                 <div class="buttonsDiv">
                                     <figure class="item">
@@ -88,7 +89,24 @@
                 {% endfor %}
             </div>
         </div>
-        <br><br><br>
+        <div class="container text-center" style="margin-top: 30px">
+            <form action="/articles/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="page" value="{{ page }}">
+
+                <div class="buttonsDiv">
+                    <!--
+                    <figure class="item">
+                        <input type="image" class="approveBtn" src="../static/prev.png" width="90" height="85" name="prevBtn" value="1">
+                    </figure>
+                    -->
+
+                    <figure class="item">
+                        <input type="image" class="approveBtn" src="../static/next.png" width="90" height="85" name="nextBtn" value="1">
+                    </figure>
+                </div>
+            </form>
+        </div>
     </body>
     {% endblock %}
 </html>
