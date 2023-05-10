@@ -27,11 +27,10 @@ def catalog(request):
             else:
                 isApprove = False
 
+            page = int(request.POST.get('page'))
             addApprove(request, isApprove)
     else:
         page = 1
-
-    print(page)
 
     engine = articlesModel.initializeEngine("News")
 
