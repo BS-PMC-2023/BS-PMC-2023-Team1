@@ -13,7 +13,7 @@ def catalog(request):
 
         try:
             df = articlesModel.getPage(engine, page)
-            expert=UserData.objects.filter(user_id=request.user.id, is_expert=True,Pending=False).exists()
+            expert=UserData.objects.filter(user_id=request.user.id, isexpert=True,Pending=False).exists()
             return render(request, 'articles/article.html', {'data': df.iterrows(), 'page': page,'expert':expert })
         except:
             return generatePage(engine, page + 1, initPage)
