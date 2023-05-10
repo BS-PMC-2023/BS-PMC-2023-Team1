@@ -6,30 +6,36 @@ from .models import PredictionApproves
 
 # Create your views here.
 def catalog(request):
-    def generatePage(engine, page):
+    def generatePage(engine, page, initPage):
         """ Recursively search for a valid page. """
-        if page == 5: # Max tries - 5
+        if page - initPage == 5: # Max tries - 5
             return render(request, 'articles/article.html')
 
         try:
             df = articlesModel.getPage(engine, page)
 
-            return render(request, 'articles/article.html', {'data': df.iterrows()})
+            return render(request, 'articles/article.html', {'data': df.iterrows(), 'page': page})
         except:
-            return generatePage(engine, page + 1)
-
-    page = 1
+            return generatePage(engine, page + 1, initPage)
 
     if request.method == 'POST':
-        if request.POST.get('likeBtn.x'):
-            isApprove = True
+        if request.POST.get('nextBtn.x'):
+            page = int(request.POST.get('page')) + 1
         else:
-            isApprove = False
-        addApprove(request, isApprove)
+            if request.POST.get('likeBtn.x'):
+                isApprove = True
+            else:
+                isApprove = False
+
+            addApprove(request, isApprove)
+    else:
+        page = 1
+
+    print(page)
 
     engine = articlesModel.initializeEngine("News")
 
-    return generatePage(engine, page) # Recursively find the first valid page
+    return generatePage(engine, page, page) # Recursively find the first valid page
 
 
 def addApprove(request, isApprove: bool):

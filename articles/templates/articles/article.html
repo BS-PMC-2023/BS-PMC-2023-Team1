@@ -89,7 +89,24 @@
                 {% endfor %}
             </div>
         </div>
-        <br><br><br>
+        <div class="container text-center" style="margin-top: 30px">
+            <form action="/articles/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="page" value="{{ page }}">
+
+                <div class="buttonsDiv">
+                    <!--
+                    <figure class="item">
+                        <input type="image" class="approveBtn" src="../static/prev.png" width="90" height="85" name="prevBtn" value="1">
+                    </figure>
+                    -->
+
+                    <figure class="item">
+                        <input type="image" class="approveBtn" src="../static/next.png" width="90" height="85" name="nextBtn" value="1">
+                    </figure>
+                </div>
+            </form>
+        </div>
     </body>
     {% endblock %}
 </html>
