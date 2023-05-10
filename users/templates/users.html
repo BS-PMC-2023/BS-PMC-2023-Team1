@@ -6,7 +6,6 @@
     {% block content %}
     <head>
         <h2 style="margin-top: 150px; display: flex; justify-content: center; align-items: center">Users</h2>
-            <h2 style="margin-top: 150px; display: flex; justify-content: center; align-items: center">Filter</h2>
 
     </head>
         <style>
@@ -225,25 +224,7 @@ label:last-child span {
         {% if user.is_authenticated %}
             {% for useronline in onlineuser %}
                 {% if useronline.isAdmin %}
-    <form method="POST" id='radio_filter'>
-    {% csrf_token %}
-    <div class="mydict">
-	<div>
-		<label>
-			<input type="radio" name="radio" value="expert">
-			<span>expert</span>
-		</label>
-		<label>
-			<input type="radio" name="radio" value="normal">
-			<span>normal</span>
-		</label>
-		<label>
-			<input type="radio" name="radio" value="all">
-			<span>all</span>
-		</label>
-	</div>
-</div>
-        </form>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -305,6 +286,27 @@ $(document).ready(function() {
 
          </style>
 <div class="container">
+            <h2 style="margin-top: 150px; display: flex; justify-content: center; align-items: center">Filter</h2>
+
+<form method="POST" id='radio_filter'>
+    {% csrf_token %}
+    <div class="mydict">
+	<div>
+		<label>
+			<input type="radio" name="radio" value="expert">
+			<span>expert</span>
+		</label>
+		<label>
+			<input type="radio" name="radio" value="normal">
+			<span>normal</span>
+		</label>
+		<label>
+			<input type="radio" name="radio" value="all">
+			<span>all</span>
+		</label>
+	</div>
+</div>
+        </form>
         <table >
             <tr>
                 <th>Username</th>
