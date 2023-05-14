@@ -13,12 +13,16 @@ pipeline {
         }
         
         stage('Build') {
-            steps {
-                sh """
-                    pip install -r requirements_compact.txt 
-                    python manage.py collectstatic --noinput
-                    python manage.py migrate 
-                """
+            steps{
+             script {
+                    sh 'python -m venv venv'
+                    sh 'source venv/bin/activate'
+                    sh 'pip install -r requirements.txt'
+                    sh 'python manage.py collectstatic --noinput'
+                    sh 'python manage.py migrate'
+
+
+
             }
         }
         
