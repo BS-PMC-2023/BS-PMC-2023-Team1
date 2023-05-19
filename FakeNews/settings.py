@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'articles',
     'home_page',
     'users',
-    'admin_panel',
     'graphs_statistics',
 ]
 
