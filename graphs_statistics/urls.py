@@ -6,7 +6,5 @@ from FakeNews import settings
 from . import views
 
 urlpatterns = [
-    path('graph', views.graphPredictionapprovess, name='graph'),
-    path('general', views.graphGeneral, name='general_graphs'),
     path('', views.graphGeneral, name='general_graphs'),
 ]

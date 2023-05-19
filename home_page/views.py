@@ -1,10 +1,44 @@
 from django.shortcuts import render
 from registration.models import UserData
-from articles.models import PredictionApproves
+from articles.models import PredictionApproves, ArticleCache
 from django.contrib.auth.models import User
+import seaborn as sns
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
 import os
 from django.conf import settings
 
+
+def generateGraph(request):
+    plt.clf()
+
+    Predictionapprovess = PredictionApproves.objects.filter(expertId=request.user.id)
+    articles = ArticleCache.objects.all()
+    name = request.user.username
+    agree = 0
+    disagree = 0
+    for article in articles:
+        if Predictionapprovess.filter(link=article.link).exists():
+            if Predictionapprovess.get(link=article.link).approved:
+                agree += 1
+            else:
+                disagree += 1
+    ###############################################################
+    x = ['agree', 'disagree']
+    y = [agree, disagree]
+    sns.barplot(x=x, y=y)
+    plt.xlabel('agree or disagree')
+    plt.ylabel('number of articles')
+    plt.title('Expert ' + name + ' Agreement-Disagreement Ratio With Our Model')
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
+    buffer.close()
+
+    # Pass the plot to the template context
+    return image_base64
 
 def home(request):
     return render(request, 'home.html')
@@ -12,7 +46,7 @@ def home(request):
 def myarticle(request):
 
     articles = PredictionApproves.objects.filter(expertId=request.user.id)
-    return render(request, 'myarticle.html' ,{'articles': articles})
+    return render(request, 'myarticle.html' ,{'articles': articles, 'image': generateGraph(request)})
 
 
 
