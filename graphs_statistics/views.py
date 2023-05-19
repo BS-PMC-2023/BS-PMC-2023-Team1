@@ -9,10 +9,8 @@ import pandas as pd
 
 
 # Create your views here.
-def graphGeneral(request):
-    """ Graph of general statistics about the model performance. """
-
-    # Model's Predictions Graph
+def modelsPredictionsGraph(request):
+    # Generate Model's Predictions Graph
     plt.clf()
 
     legitCount = ArticleCache.objects.filter(isFake=False).count()
@@ -36,7 +34,11 @@ def graphGeneral(request):
     modelGraph = base64.b64encode(buffer.read()).decode('utf-8')
     buffer.close()
 
-    # Type of Users Graph
+    return modelGraph
+
+
+def usersTypeGraph(request):
+    # Generate Type of Users Graph
     plt.clf()
 
     expertsCount = UserData.objects.filter(isexpert=True).count()
@@ -67,6 +69,14 @@ def graphGeneral(request):
     usersGraph = base64.b64encode(buffer.read()).decode('utf-8')
     buffer.close()
 
-    # Pass the plot to the template context
-    context = {'modelGraph': modelGraph, 'usersGraph': usersGraph}
+    return usersGraph
+
+
+def graphGeneral(request):
+    """ Graph of general statistics about the model performance. """
+    context = {
+        'modelGraph': modelsPredictionsGraph(request),
+        'usersGraph': usersTypeGraph(request)
+    }
+
     return render(request, 'graphs_statistics/general_graphs.html', context)
