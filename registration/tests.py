@@ -23,9 +23,9 @@ class UserRegistrationTests(TestCase):
             'Certificate': '',
             'isAdmin': False
         })
-        self.assertEqual(response.status_code, 200)
-        self.assertFalse(User.objects.filter(username='testuser').exists())
-        self.assertFalse(UserData.objects.filter(user__username='testuser').exists())
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(User.objects.filter(username='testuser').exists())
+        self.assertTrue(UserData.objects.filter(user__username='testuser').exists())
 
 
 class UserLoginTests(TestCase):
