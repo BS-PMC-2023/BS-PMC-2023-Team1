@@ -94,3 +94,17 @@ fade-in3 {
     padding: 10px;
     border-radius: 8px;
 }
+
+/* Wikipedia entry embedded */
+.iframe-wiki-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*height: 100vh;*/
+    margin-top: 70px;
+}
+
+.iframe-wiki {
+    width: 900px;
+    height: 500px;
+}
