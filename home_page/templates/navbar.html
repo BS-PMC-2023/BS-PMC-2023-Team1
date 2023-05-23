@@ -53,19 +53,20 @@
                         </div>
                         <ul class="select-box-list">
                             <li>
-                                <label class="select-box-option" for="0" aria-hidden="aria-hidden">All</label>
+                                      <a href="{% url 'catalog2' 'All' %}">All</a>
+
                             </li>
                             <li>
-                                <label class="select-box-option" for="1" aria-hidden="aria-hidden">Tech</label>
+                                 <a href="{% url 'catalog2' 'Tech' %}">Tech</a>
                             </li>
                             <li>
-                                <label class="select-box-option" for="2" aria-hidden="aria-hidden">Political</label>
+                                 <a href="{% url 'catalog2' 'Political' %}">Political</a>
                             </li>
                             <li>
-                                <label class="select-box-option" for="3" aria-hidden="aria-hidden">Sport</label>
+                                 <a href="{% url 'catalog2' 'Sport' %}">Sport</a>
                             </li>
                             <li>
-                                <label class="select-box-option" for="4" aria-hidden="aria-hidden">Finance</label>
+                                 <a href="{% url 'catalog2' 'Finance' %}">Finance</a>
                             </li>
                         </ul>
                     </div>
@@ -78,4 +79,5 @@
         {% block content %}
         {% endblock %}
     </body>
+
 </html>
