@@ -8,7 +8,7 @@
     <body>
         <nav class="nav-bar sticky">
             <a class="home-button no-hover-effect" href="../../">FAKE NEWS</a>
-             <ul class="nav-list" {% if user.is_authenticated %}style="grid-template-columns: 100px 100px 100px 190px 100px 100px 100px 100px 200px;"{% else %}style="grid-template-columns: 100px 100px 190px 100px 100px 100px 200px;"{% endif %}>
+             <ul class="nav-list" {% if user.is_authenticated %}style="grid-template-columns: 100px 100px 100px 160px 160px 100px 100px 100px 150px 200px;"{% else %}style="grid-template-columns: 100px 100px 160px 100px 100px 150px 200px;"{% endif %}>
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-item-hover" href="../../users">Users</a></li>
                     <li class="nav-item"><a class="nav-item-hover" href="../myProfile">My Profile</a></li>
@@ -25,6 +25,7 @@
                     <li class="nav-item"><a class="nav-item-hover" href="../graphs_statistics">Statistics</a></li>
                     <li class="nav-item"><a class="nav-item-hover" href="../../reviews">Contact Us</a></li>
                 {% endif %}
+
                 <!-- Dropdown -->
                 <li class="nav-item">
                     <div class="select-box">
@@ -53,20 +54,19 @@
                         </div>
                         <ul class="select-box-list">
                             <li>
-                                      <a href="{% url 'catalog2' 'All' %}">All</a>
-
+                                <a href="{% url 'catalog2' 'All' %}" class="select-box-option">All</a>
                             </li>
                             <li>
-                                 <a href="{% url 'catalog2' 'Tech' %}">Tech</a>
+                                <a href="{% url 'catalog2' 'Tech' %}" class="select-box-option">Tech</a>
                             </li>
                             <li>
-                                 <a href="{% url 'catalog2' 'Political' %}">Political</a>
+                                <a href="{% url 'catalog2' 'Political' %}" class="select-box-option">Political</a>
                             </li>
                             <li>
-                                 <a href="{% url 'catalog2' 'Sport' %}">Sport</a>
+                                <a href="{% url 'catalog2' 'Sport' %}" class="select-box-option">Sport</a>
                             </li>
                             <li>
-                                 <a href="{% url 'catalog2' 'Finance' %}">Finance</a>
+                                <a href="{% url 'catalog2' 'Finance' %}" class="select-box-option">Finance</a>
                             </li>
                         </ul>
                     </div>
