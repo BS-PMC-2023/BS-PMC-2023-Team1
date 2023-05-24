@@ -8,13 +8,13 @@ from .models import PredictionApproves
 def catalog(request):
     def generatePage(engine, page, initPage):
         """ Recursively search for a valid page. """
-        if page - initPage == 5: # Max tries - 5
+        if page - initPage == 5:  # Max tries - 5
             return render(request, 'articles/article.html')
 
         try:
             df = articlesModel.getPage(engine, page)
-            expert=UserData.objects.filter(user_id=request.user.id, isexpert=True,Pending=False).exists()
-            return render(request, 'articles/article.html', {'data': df.iterrows(), 'page': page,'expert':expert })
+            expert = UserData.objects.filter(user_id=request.user.id, isexpert=True, Pending=False).exists()
+            return render(request, 'articles/article.html', {'data': df.iterrows(), 'page': page, 'expert': expert})
         except:
             return generatePage(engine, page + 1, initPage)
 
@@ -34,7 +34,39 @@ def catalog(request):
 
     engine = articlesModel.initializeEngine("News")
 
-    return generatePage(engine, page, page) # Recursively find the first valid page
+    return generatePage(engine, page, page)  # Recursively find the first valid page
+
+
+def catalog2(request, ctro):
+    def generatePage2(engine, page, initPage):
+        """ Recursively search for a valid page. """
+        if page - initPage == 5:  # Max tries - 5
+            return render(request, 'articles/article.html')
+
+        try:
+            df = articlesModel.getPage(engine, page)
+            expert = UserData.objects.filter(user_id=request.user.id, isexpert=True, Pending=False).exists()
+            return render(request, 'articles/article.html', {'data': df.iterrows(), 'page': page, 'expert': expert})
+        except:
+            return generatePage2(engine, page + 1, initPage)
+
+    if request.method == 'POST':
+        if request.POST.get('nextBtn.x'):
+            page = int(request.POST.get('page')) + 1
+        else:
+            if request.POST.get('likeBtn.x'):
+                isApprove = True
+            else:
+                isApprove = False
+
+            page = int(request.POST.get('page'))
+            addApprove(request, isApprove)
+    else:
+        page = 1
+
+    engine = articlesModel.initializeEngine(ctro)
+
+    return generatePage2(engine, page, page)
 
 
 def addApprove(request, isApprove: bool):
@@ -50,9 +82,9 @@ def addApprove(request, isApprove: bool):
 
     # Add the new approval/denial
     PredictionApproves.objects.create(
-        title = title,
-        link = link,
-        expertId = request.user.id,
-        expertName = expert.firstname + ' ' + expert.lastname,
-        approved = isApprove
+        title=title,
+        link=link,
+        expertId=request.user.id,
+        expertName=expert.firstname + ' ' + expert.lastname,
+        approved=isApprove
     )

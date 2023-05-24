@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'home_page',
     'users',
     'graphs_statistics',
+    'favoriteExpert',
 ]
 
 MIDDLEWARE = [
