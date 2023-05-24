@@ -10,12 +10,12 @@ import os
 from django.conf import settings
 
 
-def generateGraph(request):
+def generateGraph(username, id):
     plt.clf()
 
-    Predictionapprovess = PredictionApproves.objects.filter(expertId=request.user.id)
+    Predictionapprovess = PredictionApproves.objects.filter(expertId=id)
     articles = ArticleCache.objects.all()
-    name = request.user.username
+    name = username
     agree = 0
     disagree = 0
     for article in articles:
@@ -46,15 +46,13 @@ def home(request):
 def myarticle(request):
 
     articles = PredictionApproves.objects.filter(expertId=request.user.id)
-    return render(request, 'myarticle.html' ,{'articles': articles, 'image': generateGraph(request)})
+    return render(request, 'myarticle.html' ,{'title': 'My approved articles', 'articles': articles, 'image': generateGraph(request.user.username, request.user.id)})
 
 
 def expertArticleList(request, expertId):
 
     articles = PredictionApproves.objects.filter(expertId=expertId)
-    return render(request, 'myarticle.html' ,{'articles': articles, 'image': generateGraph(request)})
-
-
+    return render(request, 'myarticle.html' ,{'title': 'Approved Articles of this Expert', 'articles': articles, 'image': generateGraph("", expertId)})
 
 def myProfile(request):
     if request.method == 'POST':
