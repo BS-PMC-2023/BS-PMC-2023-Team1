@@ -113,6 +113,7 @@ label:last-child span {
                             <br><br><br>
                             Exprt name: {{ row.user }}
                             <br>
+                            <a href="{% url 'expertId' row.user.id %}">See Expert's Articles</a>
                             <br><br>
                             <form  method="post" action="{% url 'favoriteExpert2' %}">
                                 <input type="hidden" name="expid" value={{ row.user.id }}>

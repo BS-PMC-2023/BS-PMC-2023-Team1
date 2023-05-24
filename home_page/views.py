@@ -49,6 +49,12 @@ def myarticle(request):
     return render(request, 'myarticle.html' ,{'articles': articles, 'image': generateGraph(request)})
 
 
+def expertArticleList(request, expertId):
+
+    articles = PredictionApproves.objects.filter(expertId=expertId)
+    return render(request, 'myarticle.html' ,{'articles': articles, 'image': generateGraph(request)})
+
+
 
 def myProfile(request):
     if request.method == 'POST':
