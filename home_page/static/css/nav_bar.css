@@ -55,7 +55,7 @@
 .nav-list {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 100px 100px 100px 190px 100px 100px 100px 300px;
+    grid-template-columns: 100px 100px 100px 190px 100px 100px 100px 100px 200px;
     gap: 20px;
     justify-content: center;
     padding: 0;
@@ -96,11 +96,11 @@
     height: 1.5px;
     border-radius: 4px;
     background-color: #575756;
-    bottom: -12px;
+    bottom: -8px;
     left: 0;
     transform-origin: initial;
     transform: scaleX(0);
-    transition: transform .4s ease-in-out;
+    transition: transform .3s ease-in-out;
 }
 
 .nav-item-hover:hover::before {
@@ -113,6 +113,7 @@
 .select-box {
     position: relative;
     margin-top: -12px;
+    margin-left: -25px;
     display: block;
     width: 100%;
     font-size: 14px;
@@ -188,8 +189,6 @@
             animation-fill-mode: forwards;
     -webkit-animation-timing-function: step-start;
             animation-timing-function: step-start;
-    /*box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);*/
-    /*box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2);*/
     border-radius: 12px;
     background-color: #ffffff;
 }
@@ -242,9 +241,10 @@
 /* Search Box */
 .search-box {
     width: 100%;
+    height: 80%;
     padding: 8px 24px;
-    margin-left: 15px;
-    margin-top: -5px;
+    margin-left: -20px;
+    /*margin-top: -5px;*/
     background-color: transparent;
     transition: transform 300ms ease-in-out;
     font-size: 14px;
