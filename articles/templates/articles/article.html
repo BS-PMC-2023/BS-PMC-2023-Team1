@@ -73,11 +73,11 @@
                             </div>
                             <br><br>
                             <form action="/articles/" method="post">
-                                    {% csrf_token %}
+                                {% csrf_token %}
                                 <input type="hidden" name="link" value={{ row.link }}>
                                 <input type="hidden" name="title" value={{ row.title }}>
                                 <input type="hidden" name="page" value="{{ page }}">
-                    {% if expert %}
+                                {% if expert %}
                                 <div class="buttonsDiv">
                                     <figure class="item">
                                         <input type="image" class="approveBtn" src="../static/like.png" width="45" height="45" name="likeBtn" value="1">
@@ -90,6 +90,7 @@
                                     </figure>
                                 </div>
                                 {% endif %}
+                                <button type="button" class="btn btn-primary" onclick="copyToClipboard('{{ row.link }}')">Share</button>
                             </form>
                         </div>
                     </div>
@@ -115,6 +116,18 @@
                 </div>
             </form>
         </div>
+
+        <script>
+            function copyToClipboard(text) {
+                const el = document.createElement('textarea');
+                el.value = text;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                alert('Link copied to clipboard!');
+            }
+        </script>
     </body>
     {% endblock %}
 </html>
