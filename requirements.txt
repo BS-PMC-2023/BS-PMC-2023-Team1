@@ -28,7 +28,7 @@ defusedxml==0.7.1
 Django==4.1.7
 django-crispy-forms==2.0
 entrypoints==0.4
-executing==0.8.3
+executing
 fastjsonschema==2.16.3
 feedfinder2==0.0.4
 feedparser==6.0.10
