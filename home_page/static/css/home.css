@@ -9,38 +9,141 @@
 
 /* Donald Trump's quote */
 .quote {
-    font-family: 'Nixie One', cursive;
     position: absolute;
     align-items: center;
     justify-content: center;
+    font-family: 'Nixie One', cursive;
     color: #736e6e;
+}
+
+.quote span {
+    --total: calc(var(--duration)
+    + var(--delay));
+    position: relative;
+    display: block;
+    color: transparent;
+    overflow:hidden;
+    animation:revealText 1s
+    var(--total) forwards;
+}
+
+.quote span::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: #ded7d7;
+    animation:
+    rollIn var(--duration)
+    var(--delay) forwards,
+    rollOut var(--duration)
+    var(--total) forwards;
 }
 
 /* for left quote only */
 .quote span-left {
     font-family: 'Secular One', sans-serif;
     position: absolute;
-    top: -35px;
+    top: -32px;
     left:-295px;
-    color: #AFA9A9FF;
-    font-size: 60px;;
+    /*color: #AFA9A9FF;*/
+    font-size: 60px;
+
+    color: transparent;
+    background-color: transparent;
+    --total: calc(var(--duration)
+    + var(--delay));;
+    display: block;
+    overflow:hidden;
+    animation: revealTextQuote 1s var(--total) forwards;
 }
 
 /* for right quote only */
 .quote span-right {
     font-family: 'Secular One', sans-serif;
-    color: #AFA9A9FF;
+    /*color: #AFA9A9FF;*/
     font-size: 60px;
     position: absolute;
-    top:30px;
-    left:22px;
+    margin-top:125px;
+    margin-left:12px;
     transform: scaleY(-1);
+
+    color: transparent;
+    background-color: transparent;
+    --total: calc(var(--duration)
+    + var(--delay));;
+    display: block;
+    overflow:hidden;
+    animation: revealTextQuote 1s var(--total) forwards;
 }
-/* for the line spacing of the sentence */
-.quote span {
-    position: absolute;
-    top: 40px;
-    right: 48px;
+
+.quote highlight {
+    color: transparent;
+    background-color: transparent;
+    --total: calc(var(--duration)
+    + var(--delay));
+    position: relative;
+    display: block;
+    overflow:hidden;
+    animation: revealText 2s var(--total) forwards,
+        revealBackground 50ms var(--total) forwards;
+}
+
+.quote mark-trump {
+    color: transparent;
+    background-color: transparent;
+    --total: calc(var(--duration)
+    + var(--delay));
+    position: relative;
+    display: block;
+    overflow:hidden;
+    animation: revealText 1s var(--total) forwards;
+}
+
+@keyframes revealText {
+    to {
+        color: #000000;
+    }
+}
+
+@keyframes revealTextQuote {
+    to {
+        color: #AFA9A9FF;
+    }
+}
+
+@keyframes revealBackground {
+    from {
+        background-color: transparent;
+    }
+    to {
+        background-color: #ded7d7;
+    }
+}
+
+@keyframes rollIn {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes rollOut {
+    frame {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(105%);
+    }
 }
 
 
@@ -88,7 +191,7 @@ fade-in3 {
     display: flex;
     text-align: center;
     justify-content: center;
-    margin-top: 150px;
+    margin-top: 300px;
 }
 
 .fake-gif img {
@@ -143,10 +246,18 @@ fade-in3 {
     color: #9c47ac;
 }
 
-.container-fab .btn i {
+.container-fab .btn.linkedin i {
     position: relative;
     z-index: 4;
     line-height: 30px;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+}
+
+.container-fab .btn.github i {
+    position: relative;
+    z-index: 4;
+    line-height: 20px;
     font-size: 16px;
     transition: 0.3s ease-in-out;
 }
