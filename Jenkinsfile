@@ -1,7 +1,7 @@
 pipeline {
     agent {
          docker {
-             image 'python:3-alpine'
+             image 'numpy/numpy-gitpod'
          }
     }
     
@@ -15,8 +15,11 @@ pipeline {
         stage('Build') {
             steps {
                 sh """
-                    pip install -r requirements.txt 
-                    python manage.py collectstatic --noinput
+                    id
+                    export HOME=/tmp
+                    env | sort
+                    ls -la \${HOME}
+                    pip install -r requirements.txt --user
                     python manage.py migrate 
                 """
             }
@@ -25,6 +28,11 @@ pipeline {
         stage('Test') {
             steps {
                 sh """
+                  id
+                    export HOME=/tmp
+                    env | sort
+                    ls -la \${HOME}
+                pip install django
                     python manage.py test
                 """
             }
