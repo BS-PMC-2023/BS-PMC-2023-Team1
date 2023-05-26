@@ -71,36 +71,15 @@ label:last-child span {
         <br><br>
         <!-- Headline -->
         <div class="container-fluid text-center py-3">
-            <fade-in><h1 class="fade-in">Experts</h1></fade-in>
+            <fade-in><h1 class="fade-in">Articles</h1></fade-in>
         </div>
         <div class="container text-center" style="margin-top: 30px">
-        <form method="POST" id='radio_filter'>
-    {% csrf_token %}
-    <div class="mydict">
-	<div>
-		<label>
-			<input type="radio" name="radio" value="My favorite">
-			<span>My favorite</span>
-		</label>
-		<label>
-			<input type="radio" name="radio" value="all">
-			<span>all</span>
-		</label>
-	</div>
-</div>
-        </form>
             <div class="row row-cols-1 row-cols-md-3 g-4">
 
                 {% for  row in exprts %}
                 <div class="col">
                     <div class="card h-100 cards">
-                    {% if row.pic %}
-                            <img src="{{ row.pic.url }}" class="card-img-top" style="width: 100%; height: auto; position: relative" alt="Image">
-                        {% else %}
-
-                        <img src="https://legacycentennialhills.com/wp-content/uploads/2015/07/No-Image-Available1.png" class="card-img-top" style="width: 100%; height: auto; position: relative" alt="Image">
-
-                    {% endif %}
+                            <img src="{{ row.img }}" class="card-img-top" style="width: 100%; height: auto; position: relative" alt="Image">
                         <div class="card-body">
                             <p class="card-text">{{ row.content|slice:":200" }}
                             </p>
@@ -111,23 +90,7 @@ label:last-child span {
                             <br>
                             {{ row.date }}
                             <br><br><br>
-                            Exprt name: {{ row.user }}
                             <br>
-                            <form  method="post" action="{% url 'expertArticleList'%}">
-                                 <input type="hidden" name="expertId" value={{ row.user.id }}>
-                            <button type="submit" class="btn btn-primary">View Profile</button>
-                            {% csrf_token %}
-                            <br><br>
-                            </form>
-                            <form  method="post" action="{% url 'favoriteExpert2' %}">
-                                <input type="hidden" name="expid" value={{ row.user.id }}>
-                                    {% csrf_token %}
-                                <div class="buttonsDiv">
-                                    <figure class="item">
-                                        <input type="image" class="approveBtn" src="../static/like.png" width="45" height="45" name="likeBtn" value="1">
-                                    </figure>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -136,13 +99,6 @@ label:last-child span {
         </div>
     </body>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-  $('#radio_filter input[type=radio]').change(function() {
-    $('#radio_filter').attr('action', '{% url "filterex" %}');
-    $('#radio_filter').submit();
-  });
-});
-</script>
+
     {% endblock %}
 </html>

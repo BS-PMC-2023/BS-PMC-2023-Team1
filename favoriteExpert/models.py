@@ -5,3 +5,8 @@ from django.db import models
 class favoriteExpert(models.Model):
     expertId = models.IntegerField()
     userId = models.IntegerField()
+
+
+class favoriteArticle(models.Model):
+    link = models.CharField(max_length=1000)
+    userId = models.IntegerField()

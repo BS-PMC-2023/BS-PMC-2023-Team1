@@ -90,11 +90,13 @@
                                     </figure>
                                 </div>
                                 {% endif %}
-
-                                <input type="image" class="approveBtn" src="../static/addFavorites.png" width="200" height="50" name="addFav" value="2">
+                                 <figure class="item">
+                                        <input type="image" class="approveBtn" src="../static/addFavorites.png" width="200" height="45" name="addFavorites" value='1'>
+                                    </figure>
                                 <br>
                                 <button type="button" class="btn btn-primary" onclick="copyToClipboard('{{ row.link }}')">Share</button>
                             </form>
+
                         </div>
                     </div>
                 </div>

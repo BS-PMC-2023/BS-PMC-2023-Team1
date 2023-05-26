@@ -40,24 +40,27 @@ def generateGraph(username, id):
     # Pass the plot to the template context
     return image_base64
 
+
 def home(request):
     return render(request, 'home.html')
 
+
 def myarticle(request):
-
     articles = PredictionApproves.objects.filter(expertId=request.user.id)
-    return render(request, 'myarticle.html' ,{'title': 'My approved articles', 'articles': articles, 'image': generateGraph(request.user.username, request.user.id)})
+    return render(request, 'myarticle.html', {'title': 'My approved articles', 'articles': articles,
+                                              'image': generateGraph(request.user.username, request.user.id)})
 
 
-def expertArticleList(request, expertId):
+def expertArticleList(request):
+        articles = PredictionApproves.objects.filter(expertId=request.POST.get('expertId'))
+        return render(request, 'myarticle.html', {'title': 'Approved Articles of this Expert', 'articles': articles,
+                                              'image': generateGraph("", request.POST.get('expertId'))})
 
-    articles = PredictionApproves.objects.filter(expertId=expertId)
-    return render(request, 'myarticle.html' ,{'title': 'Approved Articles of this Expert', 'articles': articles, 'image': generateGraph("", expertId)})
 
 def myProfile(request):
     if request.method == 'POST':
         if request.POST.get('useridd'):
-            idd=request.POST.get('useridd')
+            idd = request.POST.get('useridd')
             first_name = request.POST.get('firstname')
             last_name = request.POST.get('lastname')
             password1 = request.POST.get('password1')
