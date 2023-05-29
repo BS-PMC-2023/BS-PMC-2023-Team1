@@ -81,3 +81,68 @@ class UserLoginTests(TestCase):
         self.assertFalse(form.is_valid())
 
         self.assertIn('lastname', form.errors)
+
+
+from django.test import TestCase
+from django.contrib.auth.models import User
+from django.urls import reverse
+
+
+#######################integration tests#####################3
+class UserRegistrationLoginTest2(TestCase):
+    def test_user_registration_login(self):
+        # Register a new user
+        register_url = reverse('register')
+        register_data = {
+            'username': 'testuser',
+            'password1': 'testpassword',
+            'password2': 'testpassword',
+            'firstname': 'Test',
+            'lastname': 'User',
+            'isexpert': False,
+            'Certificate': '',
+            'isAdmin': False
+        }
+        response = self.client.post(register_url, register_data)
+        self.assertEqual(response.status_code, 302)  # Redirect to home page
+
+        # Log in with the registered user
+        login_url = reverse('login')
+        login_data = {
+            'username': 'testuser',
+            'password': 'testpassword'
+        }
+        response = self.client.post(login_url, login_data)
+        self.assertEqual(response.status_code, 302)  # Redirect to home page
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)  # Ensure the user is logged in
+
+        # Ensure the user is logged in
+
+    def test_user_registration_login2(self):
+        # Register a new user
+        register_url = reverse('register')
+        register_data = {
+            'username': 'testuser',
+            'password1': 'testpassword',
+            'password2': 'testpassword',
+            'firstname': 'Test',
+            'lastname': 'User',
+            'isexpert': True,
+            'Certificate': '',
+            'isAdmin': True
+        }
+        response = self.client.post(register_url, register_data)
+        self.assertEqual(response.status_code, 302)  # Redirect to home page
+
+        # Log in with the registered user
+        login_url = reverse('login')
+        login_data = {
+            'username': 'testuser',
+            'password': 'testpassword'
+        }
+        response = self.client.post(login_url, login_data)
+        self.assertEqual(response.status_code, 200)  # Redirect to home page
+        response = self.client.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+
