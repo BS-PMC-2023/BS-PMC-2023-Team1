@@ -92,8 +92,16 @@ label:last-child span {
                             <br><br><br>
                             <br>
                         </div>
+                        <form action="{% url "deleteArticle" %}" method="POST">
+                            {% csrf_token %}
+                           <input type ="submit" class="btn btn-primary" name="delete1" value="Delete"  >
+                            <input type="hidden" name="delete" value="{{ row.link }}">
+                        </form>
+
                     </div>
+
                 </div>
+
                 {% endfor %}
             </div>
         </div>

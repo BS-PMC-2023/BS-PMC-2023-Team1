@@ -41,6 +41,7 @@ from django.contrib.auth.models import User
 from .models import PredictionApproves
 from .views import catalog, addApprove
 
+
 class CatalogViewTest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
@@ -52,7 +53,8 @@ class CatalogViewTest(TestCase):
         response = catalog(request)
         self.assertEqual(response.status_code, 200)  # Test if the response is successful
 
-
         # Cleanup
         self.user.delete()
+
+
 

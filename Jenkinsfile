@@ -12,7 +12,7 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Preprocessing') {
             steps {
                 sh """
                     id
