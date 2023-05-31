@@ -8,6 +8,3 @@ def getAccuracy():
     predictions = articlesModel.getPrediction(df)
 
     return accuracy_score(df['label'], predictions)
-
-
-getAccuracy()
