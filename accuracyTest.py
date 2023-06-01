@@ -1,8 +1,6 @@
 import pandas as pd
 from acc import getacc
 import pandas as pd
-from articlesModel import getPrediction
-from sklearn.metrics import accuracy_score
 
 
 
