@@ -1,8 +1,8 @@
 pipeline {
     agent {
-         docker {
-             image 'numpy/numpy-gitpod'
-         }
+        docker {
+            image 'numpy/numpy-gitpod'
+        }
     }
 
     stages {
@@ -28,51 +28,65 @@ pipeline {
         stage('Test') {
             steps {
                 sh """
-                  id
+                    id
                     export HOME=/tmp
                     env | sort
                     ls -la \${HOME}
                     pip install django
                     python manage.py test
-
                 """
             }
         }
 
-            stage('Metrics 1 - Code Complexity ') {
+        stage('Metrics 1 - Code Complexity') {
             steps {
-
-                    sh """
-                     id
+                sh """
+                    id
                     export HOME=/tmp
-                        DJANGO_SETTINGS_MODULE='FakeNews.settings'
-                        pip install radon
-                        PATH='/tmp/.local/bin'
-                         radon cc --show-complexity --total-average .
-                        """
+                    DJANGO_SETTINGS_MODULE='FakeNews.settings'
+                    pip install radon
+                    PATH='/tmp/.local/bin'
+                    radon cc --show-complexity --total-average .
+                """
             }
         }
 
-        stage('Metrics 2 - Covrage ') {
+        stage('Metrics 2 - Coverage') {
             steps {
-
-                    sh """
-                     id
+                sh """
+                    id
                     export HOME=/tmp
-                        DJANGO_SETTINGS_MODULE='FakeNews.settings'
-                        pip install coverage
-                        PATH='/tmp/.local/bin'
-                        coverage run manage.py test
-                        coverage report
-                        """
+                    DJANGO_SETTINGS_MODULE='FakeNews.settings'
+                    pip install coverage
+                    PATH='/tmp/.local/bin'
+                    coverage run manage.py test
+                    coverage report
+                """
             }
         }
+
+        stage('Metrics 3 - accuracyTest') {
+            steps {
+                sh """
+                  id
+                    export HOME=/tmp
+                    env | sort
+                    ls -la \${HOME}
+                    python accuracyTest.py
+                    """
+            }
+        }
+
+        stage('Metrics 4 - check') {
+            steps {
+                sh """
+                id
+                export HOME=/tmp
+                python manage.py check
+
+                """
+            }
+        }
+    }
 }
 
-
-
-
-
-
-
-    }
