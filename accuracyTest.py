@@ -13,9 +13,3 @@ getAccuracy()
 
 
 
-def getAccuracy2():
-    df = pd.read_csv(r'test.csv')
-    predictions = getPrediction(df)
-
-    return accuracy_score(df['label'], predictions)
-print(getAccuracy2())
