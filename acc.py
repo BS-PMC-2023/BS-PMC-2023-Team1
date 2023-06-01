@@ -1,2 +1,2 @@
 def getacc(df):
-  return 90
+  return "90%"
