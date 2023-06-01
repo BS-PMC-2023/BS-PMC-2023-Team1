@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.test import TestCase, Client
 
 from home_page.views import generateGraph
 from registration.models import UserData
@@ -23,7 +24,6 @@ class Viewtest(TestCase):
         image_base64 = generateGraph(self.user.username, self.user.id)
         self.assertTrue(image_base64)  # Check if the returned image_base64 is not empty
 
-
     def test_home_view(self):
         # Write test cases for the home view
         # Example:
@@ -37,6 +37,7 @@ class Viewtest(TestCase):
         # 1. Test if the view returns a 200 status code (OK)
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
+
     def test_myarticle_view(self):
         # Write test cases for the myarticle view
         # Example:
@@ -95,8 +96,6 @@ class Viewtest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'myProfile.html')
 
-
-
     def test_myarticle_url(self):
         response = self.client.get(reverse('myarticle'))
         self.assertEqual(response.status_code, 200)
@@ -106,3 +105,5 @@ class Viewtest(TestCase):
         response = self.client.post(reverse('expertArticleList'), {'expertId': self.user.id})
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'myarticle.html')
+
+

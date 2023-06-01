@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .models import favoriteExpert, favoriteArticle
 
+
 class FavoriteExpertModelTest(TestCase):
     def setUp(self):
         self.expert = favoriteExpert.objects.create(expertId=1, userId=1)

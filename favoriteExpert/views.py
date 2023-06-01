@@ -38,7 +38,6 @@ def favoriteArticle1(request):
 
 
 def deleteArticle(request):
-    print("asd")
     if request.method == 'POST':
         if request.POST.get('delete'):
             favoriteArticle.objects.filter(link=request.POST.get('delete'), userId=request.user.id).delete()
