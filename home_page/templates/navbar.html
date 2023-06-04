@@ -26,6 +26,7 @@
                 {% endif %}
 
                 <!-- Dropdown -->
+              {% if user.is_authenticated %}
                 <li class="nav-item">
                     <div class="select-box">
                         <div class="select-box-current" tabindex="1">
@@ -51,6 +52,8 @@
                             </div>
                             <img class="select-box_icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true"/>
                         </div>
+                        {%  endif %}
+                        {% if user.is_authenticated %}
                         <ul class="select-box-list">
                             <li>
                                 <a href="{% url 'catalog2' 'All' %}" class="select-box-option">All</a>
@@ -68,6 +71,7 @@
                                 <a href="{% url 'catalog2' 'Finance' %}" class="select-box-option">Finance</a>
                             </li>
                         </ul>
+                        {%  endif %}
                     </div>
                 </li>
 
