@@ -1,5 +1,4 @@
-/* JS for navbar transition effect when toggle up / down the page */
-
+// JS for navbar transition effect when toggle up/down the page
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.nav-bar');
     const dropbox = document.querySelector('.select-box-list');
@@ -18,3 +17,5 @@ window.addEventListener('scroll', function() {
         dropbox.classList.add('dropbox-unshadowed');
     }
 });
+
+// Function to show confirmation pop-up

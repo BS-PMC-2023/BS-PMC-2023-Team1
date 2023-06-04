@@ -15,10 +15,19 @@
                     <li class="nav-item"><a class="nav-item-hover" href="../myarticle">My Articles</a></li>
                     <li class="nav-item"><a class="nav-item-hover" href="../../favoriteExpert">Favorite Experts</a></li>
                     <li class="nav-item"><a class="nav-item-hover" href="../../favoriteExpert/favoriteArticle">Favorite Article</a></li>
-                    <li class="nav-item"><a class="nav-item-hover" href="../../articles">Articles Catalog</a></li>
-                    <li class="nav-item"><a class="nav-item-hover" href="../../reviews">Contact Us</a></li>
-                    <li class="nav-item"><a class="nav-item-hover" href="../graphs_statistics">Statistics</a></li>
-                    <li class="nav-item"><a class="nav-item-hover" href="../registration/logout2">Logout</a></li>
+                    <li class="nav-item"><a class="nav-item-hover" href="../../articles" >Articles Catalog</a></li>
+
+<li class="nav-item">
+    <a class="nav-item-hover" href="javascript:void(0);" onclick="confirmLogout()">Logout</a>
+</li>
+                    <script>
+    function confirmLogout() {
+        if (confirm("Are you sure you want to logout?")) {
+            window.location.href = "{% url 'logout2' %}";
+        }
+    }
+</script>
+
                 {% else %}
                     <li class="nav-item"><a class="nav-item-hover" href="../../registration/register">Registration</a></li>
                     <li class="nav-item"><a class="nav-item-hover" href="../../registration/login">Login</a></li>
