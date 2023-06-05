@@ -107,67 +107,30 @@
     transform: scaleX(0.5);
 }
 
-.nav-item1 {
-        border-bottom: 0;
-        margin-bottom: -4px;
-}
-.nav-item1.clicked {
-    border-bottom: 1.7px solid #575756;
-}
-.nav-item2 {
+.nav-item1,
+.nav-item2,
+.nav-item3,
+.nav-item4,
+.nav-item5,
+.nav-item6,
+.nav-item7,
+.nav-item8,
+.nav-item9,
+.nav-item10 {
     border-bottom: 0;
     margin-bottom: -4px;
 }
-.nav-item2.clicked {
-   border-bottom: 1.7px solid #575756;
-}
-.nav-item3 {
-    border-bottom: 0;
-    margin-bottom: -4px;
-}
-.nav-item3.clicked {
-    border-bottom: 1.7px solid #575756;
-}
-.nav-item4 {
-    border-bottom: 0;
-    margin-bottom: -4px;
-}
-.nav-item4.clicked {
-    border-bottom: 1.7px solid #575756;
-}
-.nav-item5 {
-    border-bottom: 0;
-    margin-bottom: -4px;
-}
-.nav-item5.clicked {
-    border-bottom: 1.7px solid #575756;
-}
-.nav-item6 {
-    border-bottom: 0;
-    margin-bottom: -4px;
-}
-.nav-item6.clicked {
-    border-bottom: 1.7px solid #575756;
-}
-.nav-item7 {
-    border-bottom: 0;
-    margin-bottom: -4px;
-}
-.nav-item7.clicked {
-    border-bottom: 1.7px solid #575756;
-}
-.nav-item8 {
-    border-bottom: 0;
-    margin-bottom: -4px;
-}
-.nav-item8.clicked {
-    border-bottom: 1.7px solid #575756;
-}
-.nav-item9 {
-    border-bottom: 0;
-    margin-bottom: -4px;
-}
-.nav-item9.clicked {
+
+.nav-item1.clicked,
+.nav-item2.clicked,
+.nav-item3.clicked,
+.nav-item4.clicked,
+.nav-item5.clicked,
+.nav-item6.clicked,
+.nav-item7.clicked,
+.nav-item8.clicked,
+.nav-item9.clicked,
+.nav-item10.clicked {
     border-bottom: 1.7px solid #575756;
 }
 

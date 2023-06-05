@@ -8,7 +8,7 @@
     <body>
         <nav class="nav-bar sticky">
             <a class="home-button no-hover-effect" href="../../">FAKE NEWS</a>
-             <ul class="nav-list" {% if user.is_authenticated %}style="grid-template-columns: 100px 100px 100px 160px 160px 160px 100px 100px;"{% else %}style="grid-template-columns: 100px 100px 100px;"{% endif %}>
+             <ul class="nav-list" {% if user.is_authenticated %}style="grid-template-columns: 100px 100px 100px 160px 160px 160px 100px 100px 100px;"{% else %}style="grid-template-columns: 100px 100px 100px;"{% endif %}>
                 {% if user.is_authenticated %}
                     <div class="nav-item1">
                         <li class="nav-item"><a class="nav-item-hover" href="../../users" onclick="changeNavItemClick()">Users</a></li>
@@ -28,6 +28,9 @@
                     <div class="nav-item6">
                         <li class="nav-item"><a class="nav-item-hover" href="../../articles" onclick="changeNavItemClick()">Articles Catalog</a></li>
                     </div>
+                    <div class="nav-item7">
+                        <li class="nav-item"><a class="nav-item-hover" href="/graphs_statistics" onclick="changeNavItemClick()">Statistics</a></li>
+                    </div>
                     <li class="nav-item">
                         <a class="nav-item-hover" href="javascript:void(0);" onclick="confirmLogout()">Logout</a>
                     </li>
@@ -39,13 +42,13 @@
                         }
                     </script>
                     {% else %}
-                    <div class="nav-item7">
+                    <div class="nav-item8">
                         <li class="nav-item"><a class="nav-item-hover" href="../../registration/register">Registration</a></li>
                     </div>
-                    <div class="nav-item8">
+                    <div class="nav-item9">
                         <li class="nav-item"><a class="nav-item-hover" href="../../registration/login">Login</a></li>
                     </div>
-                    <div class="nav-item9">
+                    <div class="nav-item10">
                         <li class="nav-item"><a class="nav-item-hover" href="../../reviews">Contact Us</a></li>
                     </div>
                     {% endif %}

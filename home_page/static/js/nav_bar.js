@@ -39,7 +39,8 @@ window.onload = function() {
         document.querySelector('.nav-item6'),
         document.querySelector('.nav-item7'),
         document.querySelector('.nav-item8'),
-        document.querySelector('.nav-item9')
+        document.querySelector('.nav-item9'),
+        document.querySelector('.nav-item10')
     ];
 
     if (currentUrl.includes('users')) {
@@ -61,13 +62,16 @@ window.onload = function() {
     if (currentUrl.includes('articles')) {
          navItems[5].classList.add('clicked');
     }
-    if (currentUrl.includes('register')) {
+    if (currentUrl.includes('graphs_statistics')) {
          navItems[6].classList.add('clicked');
     }
-    if (currentUrl.includes('login')) {
+    if (currentUrl.includes('register')) {
          navItems[7].classList.add('clicked');
     }
-    if (currentUrl.includes('reviews')) {
+    if (currentUrl.includes('login')) {
          navItems[8].classList.add('clicked');
+    }
+    if (currentUrl.includes('reviews')) {
+         navItems[9].classList.add('clicked');
     }
 };
