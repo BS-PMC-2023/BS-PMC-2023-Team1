@@ -75,6 +75,41 @@ body {
 	left: 0;
 }
 
+/* Right arrow for redirect to next page */
+.right-arrow {
+    position: relative;
+    padding: 5px;
+    margin: 30px auto;
+    background: #5748a9;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    transition: all 0.2s linear;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.right-arrow:hover {
+    transform: translate3d(10px, 0, 0);
+}
+
+.right-arrow::after {
+    content: "";
+    position: absolute;
+    left: 17px;
+    z-index: 11;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid #fff;
+    border-left: 2px solid #fff;
+}
+
+.right-arrow::after {
+    top: 18px;
+    left: 12px;
+    transform: rotate(135deg);
+}
+
 /* CSS animation */
 @-webkit-keyframes fadeIn {
     0% { opacity:0; }

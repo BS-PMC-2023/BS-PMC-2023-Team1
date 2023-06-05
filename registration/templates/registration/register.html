@@ -3,176 +3,144 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <style>
-        /* Add modern and stylish styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+    <head>
+        <link rel="stylesheet" type="text/css" href="../../static/css/register.css">
+    </head>
 
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 40px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    <body>
+        <div class="form-container">
+            <h2>Registration Form</h2>
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrfmiddlewaretoken" value="4zquNjBmuJLCXAqZ32uH6doe0wQLGLCUOtTwa6ApfVnCaQ7tbIqOQZcovcPUlQur">
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" maxlength="150" autofocus required id="id_username">
+                {% if form.username.errors %}
+                    <div class="alert">{{ form.username.errors }}</div>
+                {% endif %}
+                <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
 
-        h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #333;
-        }
+                <label for="id_firstname">First name:</label>
+                <input type="text" name="firstname" required id="id_firstname">
+                {% if form.firstname.errors %}
+                    <div class="alert">{{ form.firstname.errors }}</div>
+                {% endif %}
 
-        label {
-            display: block;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
-        }
+                <label for="id_lastname">Last name:</label>
+                <input type="text" name="lastname" required id="id_lastname">
+                {% if form.lastname.errors %}
+                    <div class="alert">{{ form.lastname.errors }}</div>
+                {% endif %}
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="file"],
-        button[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: #555;
-            background-color: #f8f8f8;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+                <label for="id_email">Email address:</label>
+                <input type="email" name="email" maxlength="254" id="id_email">
+                {% if form.email.errors %}
+                    <div class="alert">{{ form.email.errors }}</div>
+                {% endif %}
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
+                <label for="id_password1">Password:</label>
+                <input type="password" name="password1" autocomplete="new-password" required id="id_password1">
 
-        .alert {
-            color: #dc3545;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
+                <label for="id_password2">Password confirmation:</label>
+                <input type="password" name="password2" autocomplete="new-password" required id="id_password2">
+                {% if form.password1.errors %}
+                    <div class="alert">{{ form.password1.errors }}</div>
+                {% endif %}
+                <span class="helptext">
+                    <ul>
+                        <li>Your password can’t be too similar to your other personal information.</li>
+                        <li>Your password must contain at least 8 characters.</li>
+                        <li>Your password can’t be a commonly used password.</li>
+                        <li>Your password can’t be entirely numeric.</li>
+                    </ul>
+                </span>
 
-        .helptext {
-            font-size: 14px;
-            color: #777;
-            margin-top: 5px;
-        }
+                <div class="checkbox-label">
+                    <input type="checkbox" name="isexpert" id="id_isexpert">
+                    <label for="id_isexpert">I am an expert</label>
+                </div>
 
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: #555;
-        }
+                <div id="box2" style="display: none;">
+                    <label>Certificate:</label>
+                    <label for="box" class="file-input-label">
+                        <span class="certificate-input-icon"></span>
+                        <span class="file-input-text">Choose File</span>
+                        <span class="file-input-filename"></span>
+                    </label>
+                    <input type="file" name="Certificate" accept="image/*" id="box" class="file-input">
+                </div>
 
-        .checkbox-label input {
-            margin-right: 10px;
-        }
+                <label>Profile Picture:</label>
+                    <label for="id_pic" class="file-input-label">
+                        <span class="file-input-icon"></span>
+                        <span class="file-input-text">Choose File</span>
+                        <span class="file-input-filename"></span>
+                </label>
+                <input type="file" name="pic" accept="image/*" id="id_pic" class="file-input">
 
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+                <button type="submit">Register</button>
+            </form>
+        </div>
 
-        button[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
+        <script>
+            const myCheckbox = document.getElementById("id_isexpert");
+            const box = document.getElementById('box');
+            const box2 = document.getElementById('box2');
 
-<body>
-    <div class="form-container">
-        <h2>Registration Form</h2>
-        <form method="post" enctype="multipart/form-data">
-            <input type="hidden" name="csrfmiddlewaretoken" value="4zquNjBmuJLCXAqZ32uH6doe0wQLGLCUOtTwa6ApfVnCaQ7tbIqOQZcovcPUlQur">
-            <label for="id_username">Username:</label>
-            <input type="text" name="username" maxlength="150" autofocus required id="id_username">
-            {% if form.username.errors %}
-                <div class="alert">{{ form.username.errors }}</div>
-            {% endif %}
-            <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+            myCheckbox.addEventListener('click', function handleClick() {
+                if (myCheckbox.checked) {
+                    box2.style.display = 'block';
+                    {#box.style.display = 'block';#}
+                } else {
+                    box2.style.display = 'none';
+                    {#box.style.display = 'none';#}
+                }
+            });
+        </script>
+        <script>
+            const pictureInput = document.getElementById('id_pic');
+            const pictureInputLabel = document.querySelector('label[for="id_pic"]');
+            const pictureInputText = pictureInputLabel.querySelector('.file-input-text');
+            const pictureInputFilename = pictureInputLabel.querySelector('.file-input-filename');
 
-            <label for="id_firstname">First name:</label>
-            <input type="text" name="firstname" required id="id_firstname">
-            {% if form.firstname.errors %}
-                <div class="alert">{{ form.firstname.errors }}</div>
-            {% endif %}
+            pictureInput.addEventListener('change', function() {
+                const filename = this.files[0].name;
+                if (filename) {
+                    pictureInputLabel.classList.add('has-file');
+                    pictureInputText.style.display = 'none';
+                    pictureInputFilename.style.display = 'inline-block';
+                    pictureInputFilename.textContent = filename;
+                }
+                else {
+                    pictureInputLabel.classList.remove('has-file');
+                    pictureInputText.style.display = 'inline-block';
+                    pictureInputFilename.style.display = 'none';
+                    pictureInputFilename.textContent = '';
+                }
+            });
+        </script>
+        <script>
+            const certificateInput = document.getElementById('box');
+            const certificateInputLabel = document.querySelector('label[for="box"]');
+            const certificateInputText = certificateInputLabel.querySelector('.file-input-text');
+            const certificateInputFilename = certificateInputLabel.querySelector('.file-input-filename');
 
-            <label for="id_lastname">Last name:</label>
-            <input type="text" name="lastname" required id="id_lastname">
-            {% if form.lastname.errors %}
-                <div class="alert">{{ form.lastname.errors }}</div>
-            {% endif %}
+            certificateInput.addEventListener('change', function() {
+                const filename = this.files[0].name;
+                if (filename) {
+                    certificateInputLabel.classList.add('has-file');
+                    certificateInputText.style.display = 'none';
+                    certificateInputFilename.style.display = 'inline-block';
+                    certificateInputFilename.textContent = filename;
+                }
+                else {
+                    certificateInputLabel.classList.remove('has-file');
+                    certificateInputText.style.display = 'inline-block';
+                    certificateInputFilename.style.display = 'none';
+                    certificateInputFilename.textContent = '';
+                }
+            });
+        </script>
 
-            <label for="id_email">Email address:</label>
-            <input type="email" name="email" maxlength="254" id="id_email">
-            {% if form.email.errors %}
-                <div class="alert">{{ form.email.errors }}</div>
-            {% endif %}
-
-            <label for="id_password1">Password:</label>
-            <input type="password" name="password1" autocomplete="new-password" required id="id_password1">
-
-            <label for="id_password2">Password confirmation:</label>
-            <input type="password" name="password2" autocomplete="new-password" required id="id_password2">
-            {% if form.password1.errors %}
-                <div class="alert">{{ form.password1.errors }}</div>
-            {% endif %}
-            <span class="helptext">
-                <ul>
-                    <li>Your password can’t be too similar to your other personal information.</li>
-                    <li>Your password must contain at least 8 characters.</li>
-                    <li>Your password can’t be a commonly used password.</li>
-                    <li>Your password can’t be entirely numeric.</li>
-                </ul>
-            </span>
-
-            <div class="checkbox-label">
-                <input type="checkbox" name="isexpert" id="id_isexpert">
-                <label for="id_isexpert">I am an expert</label>
-            </div>
-
-            <div id="box2" style="display: none;">
-                <label for="box">Certificate:</label>
-                <input type="file" name="Certificate" accept="image/*" id="box">
-            </div>
-
-            <label for="id_pic">Profile Picture:</label>
-            <input type="file" name="pic" accept="image/*" id="id_pic">
-
-            <button type="submit">Register</button>
-        </form>
-    </div>
-
-    <script>
-        const myCheckbox = document.getElementById("id_isexpert");
-        const box = document.getElementById('box');
-        const box2 = document.getElementById('box2');
-
-        myCheckbox.addEventListener('click', function handleClick() {
-            if (myCheckbox.checked) {
-                box2.style.display = 'block';
-                box.style.display = 'block';
-            } else {
-                box2.style.display = 'none';
-                box.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
 {% endblock %}
