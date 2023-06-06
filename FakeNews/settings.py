@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'reviews',
     'registration',
     'articles',
+    'home_page',
+    'users',
+    'graphs_statistics',
+    'favoriteExpert',
 ]
 
 MIDDLEWARE = [

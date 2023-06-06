@@ -18,12 +18,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+import home_page.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('reviews/', include('reviews.urls')),
+    path('reviews/', include('reviews.urls') ),
     path('articles/', include('articles.urls')),
-    path('', include('registration.urls')),
+    path('registration/', include('registration.urls')),
+    path('users/', include('users.urls')),
+    path('', include('home_page.urls')),
+    path('graphs_statistics/', include('graphs_statistics.urls')),
+    path('favoriteExpert/', include('favoriteExpert.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -14,6 +14,8 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.urls import reverse
+from django.contrib.auth import logout
+
 ##################################################################
 ####################index#######################################
 from django.shortcuts import render
@@ -34,7 +36,11 @@ def register_user(request):
             firstname = form.cleaned_data.get('firstname')
             lastname = form.cleaned_data.get('lastname')
             isexpert = form.cleaned_data.get('isexpert')
-            pic = form.cleaned_data.get('pic')
+            if 'pic' in form.cleaned_data:
+                pic = form.cleaned_data['pic']
+            else:
+                pic = None
+
             Certificate = form.cleaned_data.get('Certificate')
             isAdmin = form.cleaned_data.get('isAdmin')
             user = User.objects.get(username=username)
@@ -68,8 +74,14 @@ def Login(request):
         if user is not None:
             form = login(request, user)
             messages.success(request, f' wecome {username} !!')
-            return redirect('neww')
+            return redirect('home')
         else:
             messages.info(request, f'account does not exit plz sign in')
     form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form, 'title': 'log in'})
+
+
+def logout2(request):
+    logout(request)
+    return redirect('home')
+
