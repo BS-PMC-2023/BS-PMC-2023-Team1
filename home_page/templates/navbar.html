@@ -8,7 +8,7 @@
     <body>
         <nav class="nav-bar sticky">
             <a class="home-button no-hover-effect" href="../../">FAKE NEWS</a>
-             <ul class="nav-list" {% if user.is_authenticated %}style="grid-template-columns: 100px 100px 100px 160px 160px 160px 100px 100px 100px;"{% else %}style="grid-template-columns: 100px 100px 100px;"{% endif %}>
+             <ul class="nav-list" {% if user.is_authenticated %}style="grid-template-columns: 100px 100px 100px 160px 160px 160px 100px 100px 100px 100px;"{% else %}style="grid-template-columns: 100px 100px 100px;"{% endif %}>
                 {% if user.is_authenticated %}
                     <div class="nav-item1">
                         <li class="nav-item"><a class="nav-item-hover" href="../../users" onclick="changeNavItemClick()">Users</a></li>

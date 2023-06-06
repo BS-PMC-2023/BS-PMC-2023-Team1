@@ -138,6 +138,7 @@
 .select-box {
     position: relative;
     margin-top: -12px;
+    margin-left: -22px;
     display: block;
     width: 100%;
     font-size: 14px;
@@ -169,7 +170,7 @@
 .select-box_icon {
     position: absolute;
     top: 65%;
-    right: 5px;
+    right: 22px;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
     width: 13px;
