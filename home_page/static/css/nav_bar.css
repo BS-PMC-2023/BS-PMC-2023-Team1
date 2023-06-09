@@ -13,7 +13,7 @@
     z-index: 9999;
     display: grid;
     grid-template-columns: 150px 1fr;
-  }
+}
 
 /* Slide up the navbar when toggle top, using navbar.js */
 .slide-up {
@@ -107,13 +107,40 @@
     transform: scaleX(0.5);
 }
 
+.nav-item1,
+.nav-item2,
+.nav-item3,
+.nav-item4,
+.nav-item5,
+.nav-item6,
+.nav-item7,
+.nav-item8,
+.nav-item9,
+.nav-item10 {
+    border-bottom: 0;
+    margin-bottom: -4px;
+}
+
+.nav-item1.clicked,
+.nav-item2.clicked,
+.nav-item3.clicked,
+.nav-item4.clicked,
+.nav-item5.clicked,
+.nav-item6.clicked,
+.nav-item7.clicked,
+.nav-item8.clicked,
+.nav-item9.clicked,
+.nav-item10.clicked {
+    border-bottom: 1.7px solid #575756;
+}
 
 /* Dropdown menu */
 .select-box {
     position: relative;
     margin-top: -12px;
+    margin-left: -22px;
     display: block;
-    width: 60%;
+    width: 100%;
     font-size: 14px;
     color: #60666d;
 }
@@ -143,7 +170,7 @@
 .select-box_icon {
     position: absolute;
     top: 65%;
-    right: 15px;
+    right: 22px;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
     width: 13px;

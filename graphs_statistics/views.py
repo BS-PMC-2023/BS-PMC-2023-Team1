@@ -28,6 +28,8 @@ def modelsPredictionsGraph(request):
     plt.pie(data, labels=labels, colors=colors, autopct='%.0f%%')
     plt.title("Classification Model's Predictions Comparison")
 
+    plt.legend(title='Legend', labels=labels, loc='lower left')
+
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
     buffer.seek(0)
@@ -62,6 +64,8 @@ def usersTypeGraph(request):
 
     plt.pie(data, labels=labels, colors=colors, autopct='%.0f%%')
     plt.title("Total Registered Users Type")
+
+    plt.legend(title='Colors Legend', labels=labels, loc='lower left')
 
     buffer = BytesIO()
     plt.savefig(buffer, format='png')

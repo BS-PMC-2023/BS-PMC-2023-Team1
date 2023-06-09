@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from registration.models import UserData
-from .models import favoriteExpert
+from .models import favoriteExpert, favoriteArticle
 from django.shortcuts import render, redirect
+from articles.models import PredictionApproves, ArticleCache
 
 
 # Create your views here.
@@ -28,3 +29,17 @@ def filterex(request):
                 return render(request, 'favoriteExpert.html', {'exprts': exprts})
             return render(request, 'favoriteExpert.html', {'exprts': exprts})
     return render(request, 'favoriteExpert.html', {'exprts': exprts})
+
+
+def favoriteArticle1(request):
+    temp = favoriteArticle.objects.filter(userId=request.user.id)
+    exprts = ArticleCache.objects.filter(link__in=temp.values('link'))
+    return render(request, 'favoriteArticle.html', {'exprts': exprts})
+
+
+def deleteArticle(request):
+    if request.method == 'POST':
+        if request.POST.get('delete'):
+            favoriteArticle.objects.filter(link=request.POST.get('delete'), userId=request.user.id).delete()
+            return redirect('/favoriteExpert/favoriteArticle')
+    return redirect('/favoriteExpert/favoriteArticle')

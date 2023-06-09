@@ -2,7 +2,7 @@ from django.shortcuts import render
 from OurArticlesModel import articlesModel
 from registration.models import UserData
 from .models import PredictionApproves
-
+from favoriteExpert.models import favoriteArticle
 
 # Create your views here.
 def catalog(request):
@@ -31,7 +31,10 @@ def catalog(request):
             addApprove(request, isApprove)
     else:
         page = 1
-
+    if request.POST.get('addFavorites.x'):
+        print(request.POST.get('link'))
+        if not favoriteArticle.objects.filter(link=request.POST.get('link'), userId=request.user.id).exists():
+            favoriteArticle.objects.create(link=request.POST.get('link'), userId=request.user.id)
     engine = articlesModel.initializeEngine("News")
 
     return generatePage(engine, page, page)  # Recursively find the first valid page
@@ -88,3 +91,9 @@ def addApprove(request, isApprove: bool):
         expertName=expert.firstname + ' ' + expert.lastname,
         approved=isApprove
     )
+
+
+def favoriteArticle2(request):
+    if request.method == 'POST':
+        if request.POST.get('addFavorites.x'):
+            return render(request, 'home.html')

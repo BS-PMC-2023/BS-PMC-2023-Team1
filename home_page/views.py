@@ -10,12 +10,12 @@ import os
 from django.conf import settings
 
 
-def generateGraph(request):
+def generateGraph(username, id):
     plt.clf()
 
-    Predictionapprovess = PredictionApproves.objects.filter(expertId=request.user.id)
+    Predictionapprovess = PredictionApproves.objects.filter(expertId=id)
     articles = ArticleCache.objects.all()
-    name = request.user.username
+    name = username
     agree = 0
     disagree = 0
     for article in articles:
@@ -40,20 +40,27 @@ def generateGraph(request):
     # Pass the plot to the template context
     return image_base64
 
+
 def home(request):
     return render(request, 'home.html')
 
+
 def myarticle(request):
-
     articles = PredictionApproves.objects.filter(expertId=request.user.id)
-    return render(request, 'myarticle.html' ,{'articles': articles, 'image': generateGraph(request)})
+    return render(request, 'myarticle.html', {'title': 'My approved articles', 'articles': articles,
+                                              'image': generateGraph(request.user.username, request.user.id)})
 
+
+def expertArticleList(request):
+        articles = PredictionApproves.objects.filter(expertId=request.POST.get('expertId'))
+        return render(request, 'myarticle.html', {'title': 'Approved Articles of this Expert', 'articles': articles,
+                                              'image': generateGraph("", request.POST.get('expertId'))})
 
 
 def myProfile(request):
     if request.method == 'POST':
         if request.POST.get('useridd'):
-            idd=request.POST.get('useridd')
+            idd = request.POST.get('useridd')
             first_name = request.POST.get('firstname')
             last_name = request.POST.get('lastname')
             password1 = request.POST.get('password1')

@@ -80,8 +80,10 @@ def Login(request):
     form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form, 'title': 'log in'})
 
+###################################################################################
+from django.shortcuts import render
 
 def logout2(request):
-    logout(request)
-    return redirect('home')
+        logout(request)
+        return redirect("home")
 
