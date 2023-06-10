@@ -12,6 +12,7 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 nltk.download('stopwords')
 def stemming(content):
+    ps = PorterStemmer()
     stemmed_content = re.sub('[^a-zA-Z]',' ',content)
     stemmed_content = stemmed_content.lower()
     stemmed_content = stemmed_content.split()
@@ -19,7 +20,6 @@ def stemming(content):
     stemmed_content = ' '.join(stemmed_content)
     return stemmed_content
 def getacc(df):
-  ps = PorterStemmer()
   vectorizer = TfidfVectorizer()
   df = df.fillna(' ')
   df['content'] = df['author']+' '+df['title']
