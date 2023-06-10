@@ -17,6 +17,6 @@ from keras.layers import LSTM, Dense, Dropout, Embedding
 nltk.download('stopwords')
 
 def getacc(df):
-  df.head()
+  print(df.head())
 
   
