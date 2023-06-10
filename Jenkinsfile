@@ -72,6 +72,7 @@ pipeline {
                     export HOME=/tmp
                     env | sort
                     ls -la \${HOME}
+                    
                     python accuracyTest.py
                     """
             }
@@ -89,4 +90,5 @@ pipeline {
         }
     }
 }
+
 
