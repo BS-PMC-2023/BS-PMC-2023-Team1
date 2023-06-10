@@ -20,6 +20,7 @@ def stemming(content):
     stemmed_content = ' '.join(stemmed_content)
     return stemmed_content
 def getacc(df):
+  print(df.head(5))
   vectorizer = TfidfVectorizer()
   df = df.fillna(' ')
   df['content'] = df['author']+' '+df['title']
