@@ -11,15 +11,6 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 nltk.download('stopwords')
-
-def getacc(df):
-  ps = PorterStemmer()
-  vectorizer = TfidfVectorizer()
-  df = df.fillna(' ')
-  df['content'] = df['author']+' '+df['title']
-  df['content'] = df['content'].apply(stemming)
-  xTrain = df.drop('label',axis=1)
-  yTrain = df['label']
 def stemming(content):
     stemmed_content = re.sub('[^a-zA-Z]',' ',content)
     stemmed_content = stemmed_content.lower()
@@ -27,6 +18,11 @@ def stemming(content):
     stemmed_content = [ps.stem(word) for word in stemmed_content if not word in stopwords.words('english')]
     stemmed_content = ' '.join(stemmed_content)
     return stemmed_content
+def getacc(df):
+  ps = PorterStemmer()
+  vectorizer = TfidfVectorizer()
+  df = df.fillna(' ')
+  df['content'] = df['author']+' '+df['title']
   df['content'] = df['content'].apply(stemming)
   xTrain = df.drop('label',axis=1)
   yTrain = df['label']
