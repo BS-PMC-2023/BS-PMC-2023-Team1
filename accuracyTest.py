@@ -5,7 +5,7 @@ import pandas as pd
 
 
 def getAccuracy():
-    df = pd.read_csv(r'test.csv')
+    df = pd.read_csv(r'train10.csv')
     print(getacc(df))
 getAccuracy()
 
