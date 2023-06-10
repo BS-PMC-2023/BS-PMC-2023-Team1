@@ -31,7 +31,7 @@ def getacc(df):
   model = LogisticRegression()
   model.fit(trainX, trainY)
   predictions = model.predict(valX)
-  print(accuracy_score(valY, predictions))
+  print(predictions)
   
   
 
