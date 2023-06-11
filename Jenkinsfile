@@ -65,13 +65,14 @@ pipeline {
             }
         }
 
-        stage('Metrics 3 - accuracyTest') {
+        stage('Metrics 3 - Accuracy Test + Precision Test') {
             steps {
                 sh """
                   id
                     export HOME=/tmp
                     env | sort
                     ls -la \${HOME}
+                    
                     python accuracyTest.py
                     """
             }
@@ -89,4 +90,5 @@ pipeline {
         }
     }
 }
+
 
