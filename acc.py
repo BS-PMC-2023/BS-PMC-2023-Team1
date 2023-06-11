@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score,precision_score
 
 import nltk
 from nltk.corpus import stopwords
@@ -33,6 +33,8 @@ def getacc(df):
   model.fit(trainX, trainY)
   predictions = model.predict(valX)
   print("model accuracy: "+str(accuracy_score(valY, predictions))+"%")
+  print('\n')
+  print("model precision: "+str(precision_score(valY, predictions))+"%")  
   
   
 
