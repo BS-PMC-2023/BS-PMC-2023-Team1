@@ -65,7 +65,7 @@ pipeline {
             }
         }
 
-        stage('Metrics 3 - accuracyTest') {
+        stage('Metrics 3 - Accuracy Test + Precision Test') {
             steps {
                 sh """
                   id
